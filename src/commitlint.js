@@ -1,0 +1,1 @@
+require("@commitlint/cli/cli");

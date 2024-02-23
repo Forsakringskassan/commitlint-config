@@ -1,0 +1,118 @@
+{
+  "name": "@forsakringskassan/commitlint-config",
+  "version": "1.1.0",
+  "description": "FK commitlint shareable config",
+  "keywords": [
+    "commitlint"
+  ],
+  "homepage": "https://github.com/Forsakringskassan/commitlint-config",
+  "bugs": "https://github.com/Forsakringskassan/commitlint-config/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Forsakringskassan/commitlint-config.git"
+  },
+  "license": "MIT",
+  "author": "Försäkringskassan",
+  "exports": {
+    ".": "./dist/config/default.js",
+    "./default": "./dist/config/default.js",
+    "./no-jira": "./dist/config/no-jira.js"
+  },
+  "main": "dist/config/index.js",
+  "bin": {
+    "commitlint": "bin/cli.js",
+    "commitlint-config": "bin/install.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "gitmessage"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "run-s build:*",
+    "build:cli": "esbuild --bundle --platform=node --target=node16.0 --external:ts-node --outdir=dist/cli src/commitlint.js",
+    "build:config": "esbuild --bundle --platform=node --target=node16.0 --external:@forsakringskassan/commitlint-config --outdir=dist/config src/config/*.js",
+    "build:install": "esbuild --bundle --platform=node --target=node16.0 --outdir=dist src/install.js",
+    "build:format": "esbuild --bundle --platform=node --target=node16.0 --outdir=dist src/format.js",
+    "build:parser": "esbuild --bundle --platform=node --target=node16.0 --outdir=dist src/parser.js",
+    "postbuild": "run-s postbuild:*",
+    "postbuild:cli": "cp -R node_modules/conventional-changelog-angular/templates/ dist/cli",
+    "postbuild:config": "cp -R node_modules/conventional-changelog-conventionalcommits/templates/ dist/config",
+    "prepack": "run-s pkg:mangle",
+    "postpack": "run-s pkg:restore",
+    "prepublishOnly": "run-s pkg:mangle",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint --fix .",
+    "pkg:mangle": "run-s pkg:mangle:*",
+    "pkg:mangle:pack": "release-prepack package.json --bundle --retain-scripts",
+    "pkg:mangle:add": "npm pkg set scripts.postinstall=\"node bin/install.js\"",
+    "pkg:restore": "release-postpack package.json",
+    "prepare": "husky && git config commit.template gitmessage",
+    "prettier:check": "prettier . --check",
+    "prettier:write": "prettier . --write",
+    "pretest": "run-s eslint prettier:check",
+    "test": "jest"
+  },
+  "commitlint": {
+    "extends": [
+      "./dist/config/no-jira"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,scss,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "@forsakringskassan/prettier-config",
+  "release": {
+    "extends": "@forsakringskassan/semantic-release-config"
+  },
+  "jest": {
+    "preset": "@forsakringskassan/jest-config"
+  },
+  "dependencies": {
+    "@commitlint/cli": "17.8.1",
+    "@commitlint/config-conventional": "17.8.1",
+    "is-ci": "^3.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/format": "17.8.1",
+    "@commitlint/lint": "17.8.1",
+    "@commitlint/load": "17.8.1",
+    "@forsakringskassan/eslint-config": "10.1.0",
+    "@forsakringskassan/eslint-config-cli": "10.1.0",
+    "@forsakringskassan/eslint-config-jest": "10.1.0",
+    "@forsakringskassan/jest-config": "29.3.4",
+    "@forsakringskassan/prettier-config": "1.3.11",
+    "@html-validate/release-scripts": "6.2.0",
+    "conventional-changelog-angular": "6.0.0",
+    "conventional-changelog-conventionalcommits": "6.1.0",
+    "esbuild": "0.20.1",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
+    "npm-run-all2": "6.1.2",
+    "rimraf": "5.0.5"
+  },
+  "peerDependencies": {
+    "ts-node": "^10"
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "renovate": {
+    "extends": "local>forsakringskassan/renovate-config:lib",
+    "packageRules": [
+      {
+        "matchSourceUrlPrefixes": [
+          "https://github.com/conventional-changelog/commitlint"
+        ],
+        "rangeStrategy": "pin"
+      }
+    ]
+  }
+}

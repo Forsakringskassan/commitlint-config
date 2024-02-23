@@ -1,0 +1,52 @@
+
+
+#
+# Our commit message format is as follows:
+#
+# type: short summary (fixes XYZ-1234)
+#
+# Longer description here if necessary
+#
+# The first line of the commit message (the commit title) must have a specific format. This format is checked by our build tools.
+#
+# The type is one of the following:
+#
+# * feat     - for a new feature.
+# * fix      - for a bug fix
+# * build    - changes to build process only.
+# * ci       - changes to ci/cd configuration only.
+# * docs     - changes to documentation only..
+# * perf     - for a performance improvement.
+# * refactor - code refactor without change in behaviour.
+# * revert   - for reverting a commit.
+# * style    - cosmetic changes only.
+# * test     - changes to test cases only.
+# * chore    - changes not fitting any other description.
+#
+# Breaking changes must include "BREAKING CHANGE: " in the longer description.
+#
+# The message summary should be a one-sentence description of the change, and it must be 72 characters in length or shorter.
+# If the pull request addresses an issue, then the issue number should be mentioned at the end. If the commit doesn’t completely
+# fix the issue, then use (refs XYZ-1234) instead of (fixes XYZ-1234).
+#
+# Here are some good commit message summary examples:
+#
+# * build: update Travis to only test Node 0.10 (refs XYZ-1234)
+#
+#   Travis did not work properly with last upgrade
+#   to 0.11. To ensure that we execute all our tests
+#   Travis is downgraded to the last working Node version.
+#
+# * fix: semi rule incorrectly flagging extra semicolon (fixes XYZ-1234)
+#
+#   In a few edge cases the semi rule wanted an extra
+#   semicolon.
+#
+#   Update code to work with these edge cases and add tests
+#   for the edge cases.
+#
+# * chore(deps): esprima to 1.2, switch to using Esprima comment attachment (fixes XYZ-1234)
+#
+# The commit message format is important because these messages are used to create a changelog for each release. The tag and issue
+# number help to create more consistent and useful changelogs.
+#
