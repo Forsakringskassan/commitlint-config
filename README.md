@@ -22,23 +22,6 @@ $ npm install --save-dev @forsakringskassan/commitlint-config
 
 This package bundles `@commitlint/cli` so it does not have to be installed separately.
 
-### Migrating from `commitlint-config-fk`
-
-Only applicable if you are migrating from `commitlint-config-fk`.
-
-```bash
-npm rm @commitlint/cli commitlint-config-fk
-```
-
-Other possible cleanup:
-
-```bash
-npm pkg delete scripts.include-git-config
-git rm commitlint.config.js .gitconfig .gitmessage
-```
-
-Search and remove anything with `git config --local include.path ../.gitconfig` or similar from `package.json`
-
 ## Configuration
 
 This package provides two variants:
