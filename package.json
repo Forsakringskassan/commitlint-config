@@ -18,7 +18,7 @@
     "./default": "./dist/config/default.js",
     "./no-jira": "./dist/config/no-jira.js"
   },
-  "main": "dist/config/index.js",
+  "main": "dist/config/default.js",
   "bin": {
     "commitlint": "bin/cli.js",
     "commitlint-config": "bin/install.js"
@@ -32,7 +32,7 @@
     "prebuild": "rimraf dist",
     "build": "run-s build:*",
     "build:cli": "esbuild --bundle --platform=node --target=node16.0 --external:ts-node --outdir=dist/cli src/commitlint.js",
-    "build:config": "esbuild --bundle --platform=node --target=node16.0 --external:@forsakringskassan/commitlint-config --outdir=dist/config src/config/*.js",
+    "build:config": "esbuild --bundle --platform=node --target=node16.0 --external:@forsakringskassan/commitlint-config --outdir=dist/config src/config/default.js src/config/no-jira.js",
     "build:install": "esbuild --bundle --platform=node --target=node16.0 --outdir=dist src/install.js",
     "build:format": "esbuild --bundle --platform=node --target=node16.0 --outdir=dist src/format.js",
     "build:parser": "esbuild --bundle --platform=node --target=node16.0 --outdir=dist src/parser.js",
@@ -68,7 +68,6 @@
       "prettier --write"
     ]
   },
-  "prettier": "@forsakringskassan/prettier-config",
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
   },
@@ -84,17 +83,17 @@
     "@commitlint/format": "17.8.1",
     "@commitlint/lint": "17.8.1",
     "@commitlint/load": "17.8.1",
-    "@forsakringskassan/eslint-config": "10.1.0",
-    "@forsakringskassan/eslint-config-cli": "10.1.0",
-    "@forsakringskassan/eslint-config-jest": "10.1.0",
-    "@forsakringskassan/jest-config": "29.3.4",
-    "@forsakringskassan/prettier-config": "1.3.11",
+    "@forsakringskassan/eslint-config": "10.2.0",
+    "@forsakringskassan/eslint-config-cli": "10.2.0",
+    "@forsakringskassan/eslint-config-jest": "10.2.0",
+    "@forsakringskassan/jest-config": "29.4.0",
     "@html-validate/release-scripts": "6.2.0",
     "conventional-changelog-angular": "6.0.0",
     "conventional-changelog-conventionalcommits": "6.1.0",
     "esbuild": "0.20.1",
     "husky": "9.0.11",
     "lint-staged": "15.2.2",
+    "npm-pkg-lint": "2.1.0",
     "npm-run-all2": "6.1.2",
     "rimraf": "5.0.5"
   },
