@@ -104,7 +104,7 @@
     "node": ">= 16"
   },
   "renovate": {
-    "extends": "local>forsakringskassan/renovate-config:lib",
+    "extends": "local>forsakringskassan/renovate-config",
     "packageRules": [
       {
         "matchSourceUrlPrefixes": [
