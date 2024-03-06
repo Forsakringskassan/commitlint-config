@@ -102,16 +102,5 @@
   },
   "engines": {
     "node": ">= 16"
-  },
-  "renovate": {
-    "extends": "local>forsakringskassan/renovate-config",
-    "packageRules": [
-      {
-        "matchSourceUrlPrefixes": [
-          "https://github.com/conventional-changelog/commitlint"
-        ],
-        "rangeStrategy": "pin"
-      }
-    ]
   }
 }
