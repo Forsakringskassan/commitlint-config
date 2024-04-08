@@ -1,17 +1,15 @@
-#!/usr/bin/env node
-
-const fs = require("fs");
-const path = require("path");
-const { spawnSync } = require("child_process");
-const isCI = require("is-ci");
+import fs from "node:fs";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+import isCI from "is-ci";
 
 /**
  * Find the .git directory and return the absolute path.
  *
- * @param {string} cwd - Current working directory
- * @returns {string} Absolute path to git or null if not found.
+ * @param cwd - Current working directory
+ * @returns Absolute path to git or null if not found.
  */
-function findGit(cwd) {
+function findGit(cwd: string): string | null {
     let current = cwd;
 
     // eslint-disable-next-line no-constant-condition -- breaks out eventually
@@ -37,10 +35,8 @@ function findGit(cwd) {
 
 /**
  * Calls "git config commit.template .."
- *
- * @returns {void}
  */
-function configureCommitTemplate() {
+function configureCommitTemplate(): void {
     const gitDir = findGit(process.cwd());
     if (!gitDir) {
         console.warn("Failed to locate git directory, skipping gitmessage");
