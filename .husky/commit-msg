@@ -1,1 +1,1 @@
-node bin/cli.js --edit "$1"
+node bin/commitlint.js --edit "$1"

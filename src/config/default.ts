@@ -1,12 +1,12 @@
-const path = require("path");
-const preset = require("@commitlint/config-conventional");
-const messages = require("../messages");
+import { fileURLToPath } from "node:url";
+import { type UserConfig } from "@commitlint/types";
+import preset from "@commitlint/config-conventional";
+import messages from "../messages";
 
-const distDir = path.join(__dirname, "..");
+const config = {
+    parserPreset: fileURLToPath(new URL("../parser.js", import.meta.url)),
+    formatter: fileURLToPath(new URL("../format.js", import.meta.url)),
 
-module.exports = {
-    parserPreset: path.join(distDir, "parser.js"),
-    formatter: path.join(distDir, "format.js"),
     prompt: preset.prompt,
 
     rules: {
@@ -27,11 +27,13 @@ module.exports = {
                 "jira-reference": ({ subject }) => {
                     const jira = /\((refs|fixes) [A-Z]+-[0-9]+\)$/;
                     return [
-                        subject && subject.match(jira),
+                        Boolean(subject && subject.match(jira)),
                         messages.MISSING_JIRA_REFERENCE,
                     ];
                 },
             },
         },
     ],
-};
+} satisfies UserConfig;
+
+export default config;
