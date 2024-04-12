@@ -1,6 +1,6 @@
 {
   "name": "@forsakringskassan/commitlint-config",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "FK commitlint shareable config",
   "keywords": [
     "commitlint"
@@ -68,9 +68,16 @@
   "jest": {
     "collectCoverage": false,
     "preset": "@forsakringskassan/jest-config",
-		"extensionsToTreatAsEsm": [".ts"],
-		"transform": {
-      "^.+\\.tsx?$": ["ts-jest", { "useESM": true }]
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
     }
   },
   "dependencies": {

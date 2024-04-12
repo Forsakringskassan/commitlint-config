@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.3.0](https://github.com/Forsakringskassan/commitlint-config/compare/v1.2.1...v1.3.0) (2024-04-12)
+
+
+### Features
+
+* **deps:** update dependency commitlint to v19 ([cc1d9a5](https://github.com/Forsakringskassan/commitlint-config/commit/cc1d9a595a1d192bb2f84957dc7cf03d7b88ece6))
+
 ## [1.2.1](https://github.com/Forsakringskassan/commitlint-config/compare/v1.2.0...v1.2.1) (2024-03-15)
 
 
