@@ -86,7 +86,7 @@
     "is-ci": "^3.0.0"
   },
   "devDependencies": {
-    "@commitlint/format": "19.0.3",
+    "@commitlint/format": "19.3.0",
     "@commitlint/lint": "19.2.2",
     "@commitlint/load": "19.2.0",
     "@forsakringskassan/eslint-config": "11.0.2",
