@@ -103,7 +103,7 @@
     "lint-staged": "15.2.7",
     "npm-pkg-lint": "2.4.1",
     "npm-run-all2": "6.2.2",
-    "rimraf": "5.0.8"
+    "rimraf": "5.0.9"
   },
   "peerDependencies": {
     "ts-node": "^10"
