@@ -96,7 +96,7 @@
     "@forsakringskassan/jest-config": "29.6.0",
     "@html-validate/release-scripts": "6.6.0",
     "@types/is-ci": "3.0.4",
-    "@types/jest": "29.5.12",
+    "@types/jest": "29.5.13",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "esbuild": "0.23.1",
     "husky": "9.1.6",
