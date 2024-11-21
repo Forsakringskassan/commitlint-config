@@ -99,7 +99,7 @@
     "@types/jest": "29.5.14",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "esbuild": "0.24.0",
-    "husky": "9.1.6",
+    "husky": "9.1.7",
     "lint-staged": "15.2.10",
     "npm-pkg-lint": "3.10.2",
     "npm-run-all2": "7.0.1",
