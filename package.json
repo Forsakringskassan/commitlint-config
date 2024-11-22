@@ -82,7 +82,7 @@
   },
   "dependencies": {
     "@commitlint/cli": "19.6.0",
-    "@commitlint/config-conventional": "19.5.0",
+    "@commitlint/config-conventional": "19.6.0",
     "is-ci": "^3.0.0"
   },
   "devDependencies": {
