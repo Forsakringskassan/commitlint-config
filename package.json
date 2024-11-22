@@ -87,7 +87,7 @@
   },
   "devDependencies": {
     "@commitlint/format": "19.5.0",
-    "@commitlint/lint": "19.5.0",
+    "@commitlint/lint": "19.6.0",
     "@commitlint/load": "19.5.0",
     "@forsakringskassan/eslint-config": "11.4.3",
     "@forsakringskassan/eslint-config-cli": "11.4.2",
