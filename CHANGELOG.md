@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.3.6](https://github.com/Forsakringskassan/commitlint-config/compare/v1.3.5...v1.3.6) (2024-11-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @commitlint/cli to v19.6.0 ([3ef11ee](https://github.com/Forsakringskassan/commitlint-config/commit/3ef11ee76e7837648ed4d88d22443635b5d37e3f))
+* **deps:** update dependency @commitlint/config-conventional to v19.6.0 ([534437c](https://github.com/Forsakringskassan/commitlint-config/commit/534437c7305b36befc1b2eacef2bf29c7afeee9b))
+
 ## [1.3.5](https://github.com/Forsakringskassan/commitlint-config/compare/v1.3.4...v1.3.5) (2024-09-20)
 
 
