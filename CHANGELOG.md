@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [1.4.0](https://github.com/Forsakringskassan/commitlint-config/compare/v1.3.6...v1.4.0) (2024-12-20)
+
+### Features
+
+* **deps:** update dependency is-ci to v4 ([ef06988](https://github.com/Forsakringskassan/commitlint-config/commit/ef069889e135be962ae39d07bcf35259d8e90e57))
+
+### Bug Fixes
+
+* **deps:** update dependency @commitlint/cli to v19.6.1 ([3cb245a](https://github.com/Forsakringskassan/commitlint-config/commit/3cb245a37801a25237320a23da9df3adedb07b0e))
+
 ## [1.3.6](https://github.com/Forsakringskassan/commitlint-config/compare/v1.3.5...v1.3.6) (2024-11-29)
 
 
