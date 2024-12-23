@@ -98,7 +98,7 @@
     "@types/is-ci": "3.0.4",
     "@types/jest": "29.5.14",
     "conventional-changelog-conventionalcommits": "8.0.0",
-    "esbuild": "0.24.0",
+    "esbuild": "0.24.1",
     "husky": "9.1.7",
     "lint-staged": "15.2.11",
     "npm-pkg-lint": "3.10.6",
