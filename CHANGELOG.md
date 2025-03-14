@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.4.2](https://github.com/Forsakringskassan/commitlint-config/compare/v1.4.1...v1.4.2) (2025-03-14)
+
+### Bug Fixes
+
+* **deps:** update commitlint monorepo to v19.8.0 ([ad9f3a9](https://github.com/Forsakringskassan/commitlint-config/commit/ad9f3a9dbc782b7e869e6f4dc89334a8affebe9e))
+
 ## [1.4.1](https://github.com/Forsakringskassan/commitlint-config/compare/v1.4.0...v1.4.1) (2025-02-07)
 
 ### Bug Fixes
