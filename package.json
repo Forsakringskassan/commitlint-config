@@ -93,7 +93,7 @@
     "@forsakringskassan/eslint-config-cli": "11.9.0",
     "@forsakringskassan/eslint-config-jest": "11.9.3",
     "@forsakringskassan/eslint-config-typescript": "11.9.3",
-    "@forsakringskassan/jest-config": "29.6.1",
+    "@forsakringskassan/jest-config": "29.6.2",
     "@html-validate/release-scripts": "6.8.0",
     "@types/is-ci": "3.0.4",
     "@types/jest": "29.5.14",
