@@ -81,14 +81,14 @@
     }
   },
   "dependencies": {
-    "@commitlint/cli": "19.8.0",
-    "@commitlint/config-conventional": "19.8.0",
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
     "is-ci": "^4.0.0"
   },
   "devDependencies": {
-    "@commitlint/format": "19.8.0",
-    "@commitlint/lint": "19.8.0",
-    "@commitlint/load": "19.8.0",
+    "@commitlint/format": "19.8.1",
+    "@commitlint/lint": "19.8.1",
+    "@commitlint/load": "19.8.1",
     "@forsakringskassan/eslint-config": "11.9.6",
     "@forsakringskassan/eslint-config-cli": "11.9.0",
     "@forsakringskassan/eslint-config-jest": "11.9.5",
