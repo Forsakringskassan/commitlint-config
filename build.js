@@ -13,7 +13,7 @@ await build({
     bundle: true,
     format: "esm",
     platform: "node",
-    target: "node18",
+    target: "node20",
     logLevel: "info",
     banner: {
         js: `
