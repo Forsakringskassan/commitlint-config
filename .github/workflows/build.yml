@@ -21,4 +21,6 @@ jobs:
             #- name: Jest
             #  run: npm run --ignore-scripts test
             - name: Self-test
-              run: "echo 'fix: foo' | node bin/commitlint.js"
+              run: |
+                  echo 'fix: foo' | node bin/commitlint.js
+                  node bin/lint-staged.js

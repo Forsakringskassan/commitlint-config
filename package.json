@@ -17,17 +17,20 @@
   "exports": {
     ".": "./dist/config/default.js",
     "./default": "./dist/config/default.js",
-    "./no-jira": "./dist/config/no-jira.js"
+    "./no-jira": "./dist/config/no-jira.js",
+    "./lint-staged": "./lint-staged.js"
   },
   "main": "dist/config/default.js",
   "bin": {
     "commitlint": "bin/commitlint.js",
-    "commitlint-config": "bin/install.js"
+    "commitlint-config": "bin/install.js",
+    "lint-staged": "bin/lint-staged.js"
   },
   "files": [
     "bin",
     "dist",
-    "gitmessage"
+    "gitmessage",
+    "lint-staged.js"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
@@ -53,15 +56,6 @@
       "./dist/config/no-jira"
     ]
   },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{json,scss,css,md}": [
-      "prettier --write"
-    ]
-  },
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
   },
@@ -83,7 +77,8 @@
   "dependencies": {
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
-    "is-ci": "^4.0.0"
+    "is-ci": "^4.0.0",
+    "lint-staged": "15.5.2"
   },
   "devDependencies": {
     "@commitlint/format": "19.8.1",
@@ -101,7 +96,6 @@
     "conventional-changelog-conventionalcommits": "8.0.0",
     "esbuild": "0.25.4",
     "husky": "9.1.7",
-    "lint-staged": "15.5.2",
     "npm-pkg-lint": "3.10.11",
     "npm-run-all2": "8.0.1",
     "rimraf": "6.0.1"

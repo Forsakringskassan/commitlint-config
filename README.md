@@ -53,3 +53,19 @@ As a husky hook:
 ```bash
 echo 'npm exec commitlint -- --edit "$1"' > .husky/commit-msg
 ```
+
+### Lint staged
+
+This package bundles `lint-staged` and can be used with a preconfigured setup.
+Assuming husky is used add `.husky/pre-commit` with:
+
+```bash
+configfile=$(node -p 'require.resolve("@forsakringskassan/commitlint-config/lint-staged")')
+npm exec lint-staged -- --config "${configfile}" "$@"
+```
+
+If you already have `lint-staged` in your `package.json` you should remove it:
+
+```bash
+npm rm lint-staged
+```
