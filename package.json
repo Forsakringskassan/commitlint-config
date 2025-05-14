@@ -78,7 +78,7 @@
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "is-ci": "^4.0.0",
-    "lint-staged": "15.5.2"
+    "lint-staged": "16.0.0"
   },
   "devDependencies": {
     "@commitlint/format": "19.8.1",
@@ -104,6 +104,6 @@
     "ts-node": "^10"
   },
   "engines": {
-    "node": ">= 20.6"
+    "node": ">= 20.18"
   }
 }

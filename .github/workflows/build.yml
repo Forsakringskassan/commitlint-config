@@ -23,4 +23,4 @@ jobs:
             - name: Self-test
               run: |
                   echo 'fix: foo' | node bin/commitlint.js
-                  node bin/lint-staged.js
+                  node bin/lint-staged.js --version
