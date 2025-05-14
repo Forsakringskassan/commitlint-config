@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [2.0.0](https://github.com/Forsakringskassan/commitlint-config/compare/v1.4.2...v2.0.0) (2025-05-14)
+
+### ⚠ BREAKING CHANGES
+
+* nodejs v20 or later is now required
+
+### Features
+
+* bundle lint-staged and configuration ([0fb0903](https://github.com/Forsakringskassan/commitlint-config/commit/0fb09036260a6010516dbd5652a5e950385aea4e))
+* **deps:** update dependency lint-staged to v16 ([851a484](https://github.com/Forsakringskassan/commitlint-config/commit/851a4840ebe3a52b4933ed9e237ce197c6a5db43))
+* require nodejs v20 or later ([0a672af](https://github.com/Forsakringskassan/commitlint-config/commit/0a672afa012c061ccae196de7ac548ed15b2f184))
+
+### Bug Fixes
+
+* **deps:** update commitlint monorepo to v19.8.1 ([3fb4d3c](https://github.com/Forsakringskassan/commitlint-config/commit/3fb4d3cce2b6c96ce01f84699149c893d84087ee))
+
 ## [1.4.2](https://github.com/Forsakringskassan/commitlint-config/compare/v1.4.1...v1.4.2) (2025-03-14)
 
 ### Bug Fixes
