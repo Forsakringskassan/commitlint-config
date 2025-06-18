@@ -78,7 +78,7 @@
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "is-ci": "^4.0.0",
-    "lint-staged": "16.1.1"
+    "lint-staged": "16.1.2"
   },
   "devDependencies": {
     "@commitlint/format": "19.8.1",
