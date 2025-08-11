@@ -18,7 +18,8 @@
     ".": "./dist/config/default.js",
     "./default": "./dist/config/default.js",
     "./no-jira": "./dist/config/no-jira.js",
-    "./lint-staged": "./lint-staged.js"
+    "./lint-staged": "./lint-staged.js",
+    "./hooks.js": "./hooks.js"
   },
   "main": "dist/config/default.js",
   "bin": {
@@ -30,7 +31,8 @@
     "bin",
     "dist",
     "gitmessage",
-    "lint-staged.js"
+    "lint-staged.js",
+    "hooks.js"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
@@ -78,7 +80,9 @@
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "is-ci": "^4.0.0",
-    "lint-staged": "16.1.5"
+    "lint-staged": "16.1.5",
+    "nano-spawn": "1.0.2",
+    "simple-git-hooks": "2.13.1"
   },
   "devDependencies": {
     "@commitlint/format": "19.8.1",
@@ -107,6 +111,7 @@
     "node": ">= 20.18"
   },
   "externalDependencies": [
-    "lint-staged"
+    "lint-staged",
+    "simple-git-hooks"
   ]
 }

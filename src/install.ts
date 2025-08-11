@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { readFile } from "node:fs/promises";
+import spawn from "nano-spawn";
 import isCI from "is-ci";
 
 /**
@@ -52,4 +54,47 @@ function configureCommitTemplate(): void {
 
 if (!isCI) {
     configureCommitTemplate();
+
+    const originCwd: string = process.env["INIT_CWD"] || "";
+
+    // Fail install if user already has git hook addon or lint-staged.
+    const nonAllowedPackages = ["husky", "simple-git-hooks", "lint-staged"];
+    const packageJson = JSON.parse(
+        await readFile(path.join(originCwd, "package.json"), {
+            encoding: "utf-8",
+        }),
+    );
+
+    const dependencies = [
+        ...Object.keys(packageJson.dependencies),
+        ...Object.keys(packageJson.devDependencies),
+    ];
+    for (const item of nonAllowedPackages) {
+        if (item in dependencies) {
+            console.error(
+                `
+                @forsakringskassan/commitlint-config
+                You need to remove package ${item} before installing this package.
+
+                Unallowed dependencies:
+                ${nonAllowedPackages.join(" ")}
+
+                Command to uninstall:
+                npm uninstall ${nonAllowedPackages.join(" ")}
+                `,
+            );
+            process.exit(1);
+        }
+    }
+
+    const result = await spawn(
+        "npm",
+        [
+            "exec",
+            "simple-git-hooks",
+            require.resolve("@forsakringskassan/commitlint-config/hooks.js"),
+        ],
+        { cwd: process.env["INIT_CWD"] },
+    );
+    console.log(result.output);
 }
