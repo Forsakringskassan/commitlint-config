@@ -26,8 +26,8 @@ This package bundles `@commitlint/cli` so it does not have to be installed separ
 
 This package provides two variants:
 
--   `@forsakringskassan/commitlint-config/default`
--   `@forsakringskassan/commitlint-config/no-jira`
+- `@forsakringskassan/commitlint-config/default`
+- `@forsakringskassan/commitlint-config/no-jira`
 
 The default configuration enforces a JIRA reference at the end of the header.
 The `no-jira` variant does not enforce it.
@@ -46,26 +46,12 @@ or manually edit `package.json`:
 }
 ```
 
-## Usage
+## Git hooks
 
-As a husky hook:
+This package will by an postinstall script add needed git hooks, so by default you dont need to add anything in your application (more than adding this package as a depedency)
 
-```bash
-echo 'npm exec commitlint -- --edit "$1"' > .husky/commit-msg
-```
-
-### Lint staged
-
-This package bundles `lint-staged` and can be used with a preconfigured setup.
-Assuming husky is used add `.husky/pre-commit` with:
+If you already have `husky`, `simple-git-hooks` or `lint-staged` in your `package.json` you need uninstall them first:
 
 ```bash
-configfile=$(node -p 'require.resolve("@forsakringskassan/commitlint-config/lint-staged")')
-npm exec lint-staged -- --config "${configfile}" "$@"
-```
-
-If you already have `lint-staged` in your `package.json` you should remove it:
-
-```bash
-npm rm lint-staged
+npm rm lint-staged husky simple-git-hooks
 ```
