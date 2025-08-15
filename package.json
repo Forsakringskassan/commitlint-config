@@ -96,7 +96,7 @@
     "@html-validate/release-scripts": "6.9.0",
     "@types/is-ci": "3.0.4",
     "@types/jest": "29.5.14",
-    "@types/node": "20.19.10",
+    "@types/node": "22.12.0",
     "conventional-changelog-conventionalcommits": "9.1.0",
     "esbuild": "0.25.9",
     "husky": "9.1.7",
@@ -108,7 +108,8 @@
     "ts-node": "^10"
   },
   "engines": {
-    "node": ">= 20.18"
+    "node": ">= 22.12.0",
+    "npm": ">= 10.0.0"
   },
   "externalDependencies": [
     "lint-staged",
