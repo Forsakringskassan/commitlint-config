@@ -1,9 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { readFile } from "node:fs/promises";
+import * as fsp from "fs/promises";
 import spawn from "nano-spawn";
 import isCI from "is-ci";
+
+import {
+    existingSimpleGitConfig,
+    packageJsonType,
+    invalidInstalledPackages,
+    existingHuskyConfig,
+} from "./verifyPackage";
 
 /**
  * Find the .git directory and return the absolute path.
@@ -57,34 +64,19 @@ if (!isCI && process.env.FK_COMMITLINT_SKIP !== "1") {
 
     const originCwd: string = process.env["INIT_CWD"] || "";
 
-    // Fail install if user already has git hook addon or lint-staged.
-    const nonAllowedPackages = ["husky", "simple-git-hooks", "lint-staged"];
-    const packageJson = JSON.parse(
-        await readFile(path.join(originCwd, "package.json"), {
+    const packageJson: packageJsonType = JSON.parse(
+        await fsp.readFile(path.join(originCwd, "package.json"), {
             encoding: "utf-8",
         }),
     );
 
-    const dependencies = [
-        ...Object.keys(packageJson.dependencies),
-        ...Object.keys(packageJson.devDependencies),
-    ];
-    for (const item of nonAllowedPackages) {
-        if (item in dependencies) {
-            console.error(
-                `
-                @forsakringskassan/commitlint-config
-                You need to remove package ${item} before installing this package.
-
-                Unallowed dependencies:
-                ${nonAllowedPackages.join(" ")}
-
-                Command to uninstall:
-                npm uninstall ${nonAllowedPackages.join(" ")}
-                `,
-            );
-            process.exit(1);
-        }
+    // Fail install if user already has git hook addon or lint-staged.
+    if (
+        invalidInstalledPackages(packageJson) ||
+        existingSimpleGitConfig(packageJson) ||
+        (await existingHuskyConfig(originCwd, fsp))
+    ) {
+        process.exit(1);
     }
 
     const result = await spawn(
