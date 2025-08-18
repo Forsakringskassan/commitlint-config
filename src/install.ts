@@ -52,7 +52,7 @@ function configureCommitTemplate(): void {
     spawnSync("git", args);
 }
 
-if (!isCI) {
+if (!isCI && process.env.FK_COMMITLINT_SKIP !== "1") {
     configureCommitTemplate();
 
     const originCwd: string = process.env["INIT_CWD"] || "";

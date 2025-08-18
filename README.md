@@ -55,3 +55,13 @@ If you already have `husky`, `simple-git-hooks` or `lint-staged` in your `packag
 ```bash
 npm rm lint-staged husky simple-git-hooks
 ```
+
+### Disable hooks
+
+To disable Git hooks from this repo, you can use environment `FK_COMMITLINT_SKIP` variable before installing.
+Hooks will never be added in a CI environment such as Jenkins.
+
+```bash
+export FK_COMMITLINT_SKIP=1
+npm install --save-dev @forsakringskassan/commitlint-config
+```
