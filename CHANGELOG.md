@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## [3.0.0](https://github.com/Forsakringskassan/commitlint-config/compare/v2.0.5...v3.0.0) (2025-08-19)
+
+### ⚠ BREAKING CHANGES
+
+* NodeJS v22.12.0 or later is now required.
+* If you already have lint-staged, husky or simple-git-hooks installed,
+these packaged needs to be removed.
+
+npm uninstall lint-staged husky simple-git-hooks
+
+### Features
+
+* bundle git hooks (refs SB-4982) ([7ac2af7](https://github.com/Forsakringskassan/commitlint-config/commit/7ac2af78d734b6c4cdf89db1aca71c45f85ab0bd))
+* possible to opt-out git hooks (refs SB-4982) ([1d45a83](https://github.com/Forsakringskassan/commitlint-config/commit/1d45a833e15ce8ebf55e44c242df8b3ff3cf4796))
+* validate install (refs SB-4982) ([9bef7a8](https://github.com/Forsakringskassan/commitlint-config/commit/9bef7a823d2c3962498fd17bf16e5218e506d3bd))
+
+### Bug Fixes
+
+* require nodejs v22.12.0 or later ([d4c2a07](https://github.com/Forsakringskassan/commitlint-config/commit/d4c2a0761843c3c4ae34f5b940ab638dabe1d4da))
+
 ## [2.0.5](https://github.com/Forsakringskassan/commitlint-config/compare/v2.0.4...v2.0.5) (2025-08-15)
 
 ### Bug Fixes
