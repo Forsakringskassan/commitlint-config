@@ -77,6 +77,12 @@ if (process.env.FK_COMMITLINT_SKIP !== "1") {
     }
 
     if (!isCI) {
+        // Unset git config made by Husky
+        // https://typicode.github.io/husky/troubleshoot.html#git-hooks-not-working-after-uninstall
+        await spawn("git", ["config", "--unset", "core.hooksPath"], {
+            cwd: process.env["INIT_CWD"],
+        });
+
         const result = await spawn(
             "npm",
             [
