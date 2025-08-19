@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [3.0.1](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.0...v3.0.1) (2025-08-19)
+
+### Bug Fixes
+
+* do no crash if package do not contain any dependencies (refs SB-4982) ([1b04af5](https://github.com/Forsakringskassan/commitlint-config/commit/1b04af515dc5d20441696bf7799ebfcef228ac79))
+* validate package regardless if ci or not (refs SB-4982) ([212fc46](https://github.com/Forsakringskassan/commitlint-config/commit/212fc46b9daf7a06166d273cc863674fcb7263e0))
+
 ## [3.0.0](https://github.com/Forsakringskassan/commitlint-config/compare/v2.0.5...v3.0.0) (2025-08-19)
 
 ### ⚠ BREAKING CHANGES
