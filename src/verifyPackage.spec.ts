@@ -20,6 +20,16 @@ afterEach(() => {
 });
 
 describe("invalidInstalledPackages", () => {
+    it("should return false if package contains no dependencies", () => {
+        let packageJson: packageJsonType = {};
+        expect(invalidInstalledPackages(packageJson)).toBe(false);
+        expect(consoleErrorSpy).not.toHaveBeenCalled();
+
+        packageJson = { dependencies: {}, devDependencies: {} };
+        expect(invalidInstalledPackages(packageJson)).toBe(false);
+        expect(consoleErrorSpy).not.toHaveBeenCalled();
+    });
+
     it("should return false if no non-allowed packages are present", () => {
         const packageJson: packageJsonType = {
             dependencies: {
