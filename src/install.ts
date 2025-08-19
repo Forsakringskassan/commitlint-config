@@ -88,6 +88,11 @@ if (process.env.FK_COMMITLINT_SKIP !== "1") {
             ],
             { cwd: process.env["INIT_CWD"] },
         );
+
+        if (result.output.toLowerCase().includes("error")) {
+            console.log(result.output);
+            process.exit(1);
+        }
         console.log(result.output);
     }
 }
