@@ -59,18 +59,15 @@ function configureCommitTemplate(): void {
     spawnSync("git", args);
 }
 
-if (!isCI && process.env.FK_COMMITLINT_SKIP !== "1") {
-    configureCommitTemplate();
+// Fail install if user already has git hook addon or lint-staged.
+const originCwd: string = process.env["INIT_CWD"] || "";
 
-    const originCwd: string = process.env["INIT_CWD"] || "";
-
+if (process.env.FK_COMMITLINT_SKIP !== "1") {
     const packageJson: packageJsonType = JSON.parse(
         await fsp.readFile(path.join(originCwd, "package.json"), {
             encoding: "utf-8",
         }),
     );
-
-    // Fail install if user already has git hook addon or lint-staged.
     if (
         invalidInstalledPackages(packageJson) ||
         existingSimpleGitConfig(packageJson) ||
@@ -79,14 +76,22 @@ if (!isCI && process.env.FK_COMMITLINT_SKIP !== "1") {
         process.exit(1);
     }
 
-    const result = await spawn(
-        "npm",
-        [
-            "exec",
-            "simple-git-hooks",
-            require.resolve("@forsakringskassan/commitlint-config/hooks.js"),
-        ],
-        { cwd: process.env["INIT_CWD"] },
-    );
-    console.log(result.output);
+    if (!isCI) {
+        const result = await spawn(
+            "npm",
+            [
+                "exec",
+                "simple-git-hooks",
+                require.resolve(
+                    "@forsakringskassan/commitlint-config/hooks.js",
+                ),
+            ],
+            { cwd: process.env["INIT_CWD"] },
+        );
+        console.log(result.output);
+    }
+}
+
+if (!isCI) {
+    configureCommitTemplate();
 }
