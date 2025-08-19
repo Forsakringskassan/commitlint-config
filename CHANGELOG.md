@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [3.0.2](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.1...v3.0.2) (2025-08-19)
+
+### Bug Fixes
+
+* reset husky config if previous installed in package (refs SB-4982) ([5ad59ee](https://github.com/Forsakringskassan/commitlint-config/commit/5ad59eee268ed492207d5b128e6c1b2aa2d6b766))
+* update broken config file (refs SB-4982) ([4ccf994](https://github.com/Forsakringskassan/commitlint-config/commit/4ccf99440e5fa463171304e78e31759e6f92b41f))
+
 ## [3.0.1](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.0...v3.0.1) (2025-08-19)
 
 ### Bug Fixes
