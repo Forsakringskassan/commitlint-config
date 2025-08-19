@@ -1,8 +1,8 @@
 import path from "node:path";
 
 export interface packageJsonType {
-    dependencies: Record<string, string>;
-    devDependencies: Record<string, string>;
+    dependencies?: Record<string, string>;
+    devDependencies?: Record<string, string>;
     "simple-git-hooks"?: Record<string, string>;
 }
 
@@ -12,8 +12,8 @@ export function invalidInstalledPackages(
     packageJson: packageJsonType,
 ): boolean {
     const dependencies = [
-        ...Object.keys(packageJson.dependencies),
-        ...Object.keys(packageJson.devDependencies),
+        ...Object.keys(packageJson.dependencies ?? {}),
+        ...Object.keys(packageJson.devDependencies ?? {}),
     ];
 
     for (const item of nonAllowedPackages) {
