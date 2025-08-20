@@ -1,6 +1,6 @@
 {
   "name": "@forsakringskassan/commitlint-config",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "FK commitlint shareable config",
   "keywords": [
     "commitlint"

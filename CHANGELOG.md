@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.0.3](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.2...v3.0.3) (2025-08-20)
+
+### Bug Fixes
+
+* prevent crashes when unsetting non-existent Git parameters (refs SB-4982) ([bfde2fb](https://github.com/Forsakringskassan/commitlint-config/commit/bfde2fb4127761d0a03c55bbd91ccca269d8d91b))
+
 ## [3.0.2](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.1...v3.0.2) (2025-08-19)
 
 ### Bug Fixes
