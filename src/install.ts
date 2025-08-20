@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import * as fsp from "fs/promises";
-import spawn from "nano-spawn";
+import spawn, { SubprocessError } from "nano-spawn";
 import isCI from "is-ci";
 
 import {
@@ -59,15 +59,17 @@ function configureCommitTemplate(): void {
     spawnSync("git", args);
 }
 
-// Fail install if user already has git hook addon or lint-staged.
-const originCwd: string = process.env["INIT_CWD"] || "";
+/* Setup hooks */
+async function setupGitHooks(): Promise<void> {
+    const originCwd: string = process.env["INIT_CWD"] || "";
 
-if (process.env.FK_COMMITLINT_SKIP !== "1") {
     const packageJson: packageJsonType = JSON.parse(
         await fsp.readFile(path.join(originCwd, "package.json"), {
             encoding: "utf-8",
         }),
     );
+
+    // Fail install if user already has git hook addon or lint-staged.
     if (
         invalidInstalledPackages(packageJson) ||
         existingSimpleGitConfig(packageJson) ||
@@ -79,9 +81,20 @@ if (process.env.FK_COMMITLINT_SKIP !== "1") {
     if (!isCI) {
         // Unset git config made by Husky
         // https://typicode.github.io/husky/troubleshoot.html#git-hooks-not-working-after-uninstall
-        await spawn("git", ["config", "--unset", "core.hooksPath"], {
-            cwd: process.env["INIT_CWD"],
-        });
+        try {
+            await spawn("git", ["config", "--unset", "core.hooksPath"], {
+                cwd: process.env["INIT_CWD"],
+            });
+        } catch (error: unknown) {
+            if (!(error instanceof SubprocessError && error.exitCode === 5)) {
+                /*
+                code 5 equals unsetting an option which does not exist,
+                this is expected if the consumer has not previously used Husky.
+                */
+                console.error(error);
+                process.exit(1);
+            }
+        }
 
         const result = await spawn(
             "npm",
@@ -101,6 +114,10 @@ if (process.env.FK_COMMITLINT_SKIP !== "1") {
         }
         console.log(result.output);
     }
+}
+
+if (process.env.FK_COMMITLINT_SKIP !== "1") {
+    await setupGitHooks();
 }
 
 if (!isCI) {
