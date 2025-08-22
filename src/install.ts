@@ -83,7 +83,11 @@ async function setupGitHooks(): Promise<void> {
         // https://typicode.github.io/husky/troubleshoot.html#git-hooks-not-working-after-uninstall
         try {
             await spawn("git", ["config", "--unset", "core.hooksPath"], {
-                cwd: process.env["INIT_CWD"],
+                cwd: originCwd,
+            });
+            fs.rmSync(path.join(originCwd, ".husky/_"), {
+                recursive: true,
+                force: true,
             });
         } catch (error: unknown) {
             if (!(error instanceof SubprocessError && error.exitCode === 5)) {
