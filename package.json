@@ -63,18 +63,7 @@
   },
   "jest": {
     "collectCoverage": false,
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
-    "preset": "@forsakringskassan/jest-config",
-    "transform": {
-      "^.+\\.tsx?$": [
-        "ts-jest",
-        {
-          "useESM": true
-        }
-      ]
-    }
+    "preset": "@forsakringskassan/jest-config/esm"
   },
   "dependencies": {
     "@commitlint/cli": "19.8.1",

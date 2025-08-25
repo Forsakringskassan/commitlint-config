@@ -12,7 +12,9 @@ import {
 let consoleErrorSpy: jest.SpyInstance;
 
 beforeEach(() => {
-    consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
+    consoleErrorSpy = import.meta.jest
+        .spyOn(console, "error")
+        .mockImplementation();
 });
 
 afterEach(() => {
