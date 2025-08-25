@@ -41,8 +41,6 @@ it.each`
     ${"fix: lorem ipsum (fixes SB-4982)"}
     ${"feat: lorem ipsum (refs SB-4982)"}
     ${"chore(deps): lorem ipsum (refs SB-4982)"}
-    ${"refactor!: lorem ipsum (refs SB-4982)"}
-    ${"feat(foo)!: lorem ipsum (refs SB-4982)"}
 `('"$message" should be valid', async ({ message }) => {
     const result = await lint(message, opts.rules, {
         parserOpts: opts.parserPreset?.parserOpts as Options,

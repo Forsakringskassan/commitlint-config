@@ -18,8 +18,8 @@ jobs:
               run: npm ci
             - name: Build
               run: npm run --if-present build
-            #- name: Jest
-            #  run: npm run --ignore-scripts test
+            - name: Jest
+              run: npm run --ignore-scripts test
             - name: Self-test
               run: |
                   echo 'fix: foo' | node bin/commitlint.js
