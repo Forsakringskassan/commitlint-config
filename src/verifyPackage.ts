@@ -1,4 +1,5 @@
 import path from "node:path";
+import { glob } from "glob";
 
 export interface packageJsonType {
     dependencies?: Record<string, string>;
@@ -57,16 +58,26 @@ export async function existingHuskyConfig(
     fileSystem: typeof import("node:fs/promises"),
 ): Promise<boolean> {
     try {
-        await fileSystem.stat(path.join(cwd, ".husky"));
-        console.error(
-            `
-                @forsakringskassan/commitlint-config
-                You need to remove husky folder before installing this package.
+        const huskyPath = path.join(cwd, ".husky");
+        await fileSystem.stat(huskyPath);
+        const huskyFiles = await glob(`.husky/**/*`, {
+            fs: fileSystem,
+            ignore: ".husky/_/**",
+        });
 
-                git rm -rf .husky
-            `,
-        );
-        return true;
+        if (huskyFiles.length > 0) {
+            console.error(
+                `
+                    @forsakringskassan/commitlint-config
+                    You need to remove husky folder before installing this package.
+
+                    git rm -rf .husky
+                `,
+            );
+            return true;
+        }
+
+        return false;
     } catch {
         /* no husky config */
     }

@@ -113,6 +113,7 @@ describe("existingHuskyConfig", () => {
         vol.fromJSON({
             "package.json": JSON.stringify({ name: "mock-package" }),
             ".husky/precommit": "...",
+            ".husky/_/.gitignore": "",
         });
 
         expect(await existingHuskyConfig("./", fs)).toBe(true);
@@ -122,6 +123,17 @@ describe("existingHuskyConfig", () => {
     it("should return false if no husky folder exists", async () => {
         vol.fromJSON({
             "package.json": JSON.stringify({ name: "mock-package" }),
+        });
+
+        expect(await existingHuskyConfig("./", fs)).toBe(false);
+        expect(consoleErrorSpy).not.toHaveBeenCalled();
+    });
+
+    it("Husky internal files should be ignored, they are later removed in postinstall script", async () => {
+        vol.fromJSON({
+            "package.json": JSON.stringify({ name: "mock-package" }),
+            ".husky/_/.gitignore": "",
+            ".husky/_/pre-commit": "...",
         });
 
         expect(await existingHuskyConfig("./", fs)).toBe(false);
