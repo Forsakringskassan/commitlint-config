@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.0.4](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.3...v3.0.4) (2025-08-27)
+
+### Bug Fixes
+
+* remove husky internal files during postinstal (refs SB-4982) ([583c057](https://github.com/Forsakringskassan/commitlint-config/commit/583c05751e4b5f19729e5502be90e9a12a433dd0))
+
 ## [3.0.3](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.2...v3.0.3) (2025-08-20)
 
 ### Bug Fixes
