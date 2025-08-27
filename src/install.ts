@@ -120,9 +120,7 @@ async function setupGitHooks(): Promise<void> {
     }
 }
 
-if (process.env.FK_COMMITLINT_SKIP !== "1") {
-    await setupGitHooks();
-}
+await setupGitHooks();
 
 if (!isCI) {
     configureCommitTemplate();
