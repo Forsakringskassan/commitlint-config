@@ -48,20 +48,13 @@ or manually edit `package.json`:
 
 ## Git hooks
 
-This package will by an postinstall script add needed git hooks, so by default you dont need to add anything in your application (more than adding this package as a depedency)
+This package uses a postinstall script to automatically add Git hooks to your application.
+
+- Prettier and Esbuild will run before commit is created (if packages exist in your application
+- The commit message will be validated.
 
 If you already have `husky`, `simple-git-hooks` or `lint-staged` in your `package.json` you need uninstall them first:
 
 ```bash
 npm rm lint-staged husky simple-git-hooks
-```
-
-### Disable hooks
-
-To disable Git hooks from this repo, you can use environment `FK_COMMITLINT_SKIP` variable before installing.
-Hooks will never be added in a CI environment such as Jenkins.
-
-```bash
-export FK_COMMITLINT_SKIP=1
-npm install --save-dev @forsakringskassan/commitlint-config
 ```
