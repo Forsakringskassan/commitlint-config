@@ -2,10 +2,10 @@
     "extends": ["local>forsakringskassan/renovate-config"],
     "packageRules": [
         {
-            "matchSourceUrlPrefixes": [
-                "https://github.com/conventional-changelog/commitlint"
-            ],
-            "rangeStrategy": "pin"
+            "rangeStrategy": "pin",
+            "matchSourceUrls": [
+                "https://github.com/conventional-changelog/commitlint{/,}**"
+            ]
         }
     ]
 }
