@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [3.0.5](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.4...v3.0.5) (2025-09-01)
+
+### Bug Fixes
+
+* do glob search in application directory (refs SB-4982) ([ebdcdda](https://github.com/Forsakringskassan/commitlint-config/commit/ebdcdda5b29eb6821e233f5a1ee891d1cd35285a))
+* remove skip hooks env (refs SB-4982) ([fecb27e](https://github.com/Forsakringskassan/commitlint-config/commit/fecb27e229b070a31120109e35d79435b9c2032e))
+
 ## [3.0.4](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.3...v3.0.4) (2025-08-27)
 
 ### Bug Fixes
