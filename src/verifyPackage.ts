@@ -63,6 +63,7 @@ export async function existingHuskyConfig(
         const huskyFiles = await glob(`.husky/**/*`, {
             fs: fileSystem,
             ignore: ".husky/_/**",
+            cwd,
         });
 
         if (huskyFiles.length > 0) {
