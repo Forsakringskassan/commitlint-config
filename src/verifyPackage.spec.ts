@@ -1,6 +1,6 @@
 import { createFsFromVolume, vol } from "memfs";
 
-type NodeFsPromises = typeof import("node:fs/promises");
+type NodeFs = typeof import("node:fs");
 
 import {
     invalidInstalledPackages,
@@ -103,10 +103,10 @@ describe("existingSimpleGitConfig", () => {
 });
 
 describe("existingHuskyConfig", () => {
-    let fs: NodeFsPromises;
+    let fs: NodeFs;
     beforeEach(() => {
         vol.reset();
-        fs = createFsFromVolume(vol).promises as unknown as NodeFsPromises;
+        fs = createFsFromVolume(vol) as unknown as NodeFs;
     });
 
     it("should return true if husky folder exists", async () => {

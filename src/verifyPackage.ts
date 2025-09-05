@@ -1,4 +1,3 @@
-import path from "node:path";
 import { glob } from "glob";
 
 export interface packageJsonType {
@@ -55,12 +54,10 @@ export function existingSimpleGitConfig(packageJson: packageJsonType): boolean {
 
 export async function existingHuskyConfig(
     cwd: string,
-    fileSystem: typeof import("node:fs/promises"),
+    fileSystem: typeof import("node:fs"),
 ): Promise<boolean> {
     try {
-        const huskyPath = path.join(cwd, ".husky");
-        await fileSystem.stat(huskyPath);
-        const huskyFiles = await glob(`.husky/**/*`, {
+        const huskyFiles = await glob(".husky/**/*", {
             fs: fileSystem,
             ignore: ".husky/_/**",
             cwd,

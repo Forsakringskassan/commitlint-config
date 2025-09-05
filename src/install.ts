@@ -73,7 +73,7 @@ async function setupGitHooks(): Promise<void> {
     if (
         invalidInstalledPackages(packageJson) ||
         existingSimpleGitConfig(packageJson) ||
-        (await existingHuskyConfig(originCwd, fsp))
+        (await existingHuskyConfig(originCwd, fs))
     ) {
         process.exit(1);
     }
