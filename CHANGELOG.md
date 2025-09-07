@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.0.7](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.6...v3.0.7) (2025-09-07)
+
+### Bug Fixes
+
+* husky validation should not crash during check (refs SB-4982) ([5ce25b2](https://github.com/Forsakringskassan/commitlint-config/commit/5ce25b2bb83362faae0b6e3183620188945dfb37))
+
 ## [3.0.6](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.5...v3.0.6) (2025-09-05)
 
 ### Bug Fixes
