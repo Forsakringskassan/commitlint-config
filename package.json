@@ -83,7 +83,7 @@
     "@forsakringskassan/eslint-config-jest": "12.2.1",
     "@forsakringskassan/eslint-config-typescript": "12.2.1",
     "@forsakringskassan/jest-config": "29.9.0",
-    "@html-validate/release-scripts": "6.9.0",
+    "@html-validate/release-scripts": "6.9.6",
     "@types/is-ci": "3.0.4",
     "@types/jest": "29.5.14",
     "@types/node": "22.18.1",
