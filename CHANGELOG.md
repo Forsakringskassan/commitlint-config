@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.0.8](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.7...v3.0.8) (2025-09-12)
+
+### Bug Fixes
+
+* **deps:** update dependency nano-spawn to v1.0.3 ([9cdf490](https://github.com/Forsakringskassan/commitlint-config/commit/9cdf490118206abbecc31c996aadf66903df1d7b))
+
 ## [3.0.7](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.6...v3.0.7) (2025-09-07)
 
 ### Bug Fixes
