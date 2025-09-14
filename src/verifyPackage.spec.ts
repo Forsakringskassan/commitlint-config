@@ -1,10 +1,11 @@
+import type * as fs from "node:fs";
 import { createFsFromVolume, vol } from "memfs";
 
-type NodeFs = typeof import("node:fs");
+type NodeFs = typeof fs;
 
 import {
+    type PackageJsonType,
     invalidInstalledPackages,
-    packageJsonType,
     existingSimpleGitConfig,
     existingHuskyConfig,
 } from "./verifyPackage";
@@ -23,7 +24,7 @@ afterEach(() => {
 
 describe("invalidInstalledPackages", () => {
     it("should return false if package contains no dependencies", () => {
-        let packageJson: packageJsonType = {};
+        let packageJson: PackageJsonType = {};
         expect(invalidInstalledPackages(packageJson)).toBe(false);
         expect(consoleErrorSpy).not.toHaveBeenCalled();
 
@@ -33,7 +34,7 @@ describe("invalidInstalledPackages", () => {
     });
 
     it("should return false if no non-allowed packages are present", () => {
-        const packageJson: packageJsonType = {
+        const packageJson: PackageJsonType = {
             dependencies: {
                 a: "18.0.0",
                 b: "18.0.0",
@@ -47,7 +48,7 @@ describe("invalidInstalledPackages", () => {
     });
 
     it("should return true if a non-allowed package is in dependencies", () => {
-        const packageJson: packageJsonType = {
+        const packageJson: PackageJsonType = {
             dependencies: {
                 husky: "7.0.0",
             },
@@ -60,7 +61,7 @@ describe("invalidInstalledPackages", () => {
     });
 
     it("should return true if a non-allowed package is in devDependencies", () => {
-        const packageJson: packageJsonType = {
+        const packageJson: PackageJsonType = {
             devDependencies: {
                 "simple-git-hooks": "7.0.0",
             },
@@ -77,7 +78,7 @@ describe("invalidInstalledPackages", () => {
 
 describe("existingSimpleGitConfig", () => {
     it('should return false if "simple-git-hooks" is not in package.json', () => {
-        const packageJson: packageJsonType = {
+        const packageJson: PackageJsonType = {
             dependencies: {
                 react: "18.0.0",
             },
@@ -90,7 +91,7 @@ describe("existingSimpleGitConfig", () => {
     });
 
     it('should return true and log error if "simple-git-hooks" is present in package.json', () => {
-        const packageJson: packageJsonType = {
+        const packageJson: PackageJsonType = {
             dependencies: {},
             devDependencies: {},
             "simple-git-hooks": {

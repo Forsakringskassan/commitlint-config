@@ -1,6 +1,7 @@
+import type * as fs from "node:fs";
 import { glob } from "glob";
 
-export interface packageJsonType {
+export interface PackageJsonType {
     dependencies?: Record<string, string>;
     devDependencies?: Record<string, string>;
     "simple-git-hooks"?: Record<string, string>;
@@ -9,7 +10,7 @@ export interface packageJsonType {
 export const nonAllowedPackages = ["husky", "simple-git-hooks", "lint-staged"];
 
 export function invalidInstalledPackages(
-    packageJson: packageJsonType,
+    packageJson: PackageJsonType,
 ): boolean {
     const dependencies = [
         ...Object.keys(packageJson.dependencies ?? {}),
@@ -36,7 +37,7 @@ export function invalidInstalledPackages(
     return false;
 }
 
-export function existingSimpleGitConfig(packageJson: packageJsonType): boolean {
+export function existingSimpleGitConfig(packageJson: PackageJsonType): boolean {
     if ("simple-git-hooks" in packageJson) {
         console.error(
             `
@@ -54,7 +55,7 @@ export function existingSimpleGitConfig(packageJson: packageJsonType): boolean {
 
 export async function existingHuskyConfig(
     cwd: string,
-    fileSystem: typeof import("node:fs"),
+    fileSystem: typeof fs,
 ): Promise<boolean> {
     try {
         const huskyFiles = await glob(".husky/**/*", {

@@ -42,7 +42,7 @@ it.each`
     ${"feat: lorem ipsum (refs SB-4982)"}
     ${"chore(deps): lorem ipsum (refs SB-4982)"}
 `('"$message" should be valid', async ({ message }) => {
-    const result = await lint(message, opts.rules, {
+    const result = await lint(message as string, opts.rules, {
         parserOpts: opts.parserPreset?.parserOpts as Options,
         plugins: opts.plugins,
     });
@@ -61,7 +61,7 @@ it.each`
     ${"fix: lorem ipsum (foobar SB-4982)"} | ${[errors.jiraReference]}
     ${"fix: (refs SB-4982) lorem ipsum"}   | ${[errors.jiraReference]}
 `('"$message" should be invalid', async ({ message, errors }) => {
-    const result = await lint(message, opts.rules, {
+    const result = await lint(message as string, opts.rules, {
         parserOpts: opts.parserPreset?.parserOpts as Options,
         plugins: opts.plugins,
     });

@@ -6,8 +6,8 @@ import spawn, { SubprocessError } from "nano-spawn";
 import isCI from "is-ci";
 
 import {
+    type PackageJsonType,
     existingSimpleGitConfig,
-    packageJsonType,
     invalidInstalledPackages,
     existingHuskyConfig,
 } from "./verifyPackage";
@@ -21,7 +21,7 @@ import {
 function findGit(cwd: string): string | null {
     let current = cwd;
 
-    // eslint-disable-next-line no-constant-condition -- breaks out eventually
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- breaks out eventually
     while (true) {
         const search = path.join(current, ".git");
 
@@ -56,18 +56,20 @@ function configureCommitTemplate(): void {
     const gitmessage = path.join(relPath, "gitmessage");
     const args = ["config", "commit.template", gitmessage];
     console.info(`git ${args.join(" ")}`);
+
+    /* eslint-disable-next-line sonarjs/no-os-command-from-path -- want to run git from PATH */
     spawnSync("git", args);
 }
 
 /* Setup hooks */
 async function setupGitHooks(): Promise<void> {
-    const originCwd: string = process.env["INIT_CWD"] || "";
+    const originCwd: string = process.env.INIT_CWD ?? "";
 
-    const packageJson: packageJsonType = JSON.parse(
+    const packageJson = JSON.parse(
         await fsp.readFile(path.join(originCwd, "package.json"), {
             encoding: "utf-8",
         }),
-    );
+    ) as PackageJsonType;
 
     // Fail install if user already has git hook addon or lint-staged.
     if (
@@ -109,7 +111,7 @@ async function setupGitHooks(): Promise<void> {
                     "@forsakringskassan/commitlint-config/hooks.js",
                 ),
             ],
-            { cwd: process.env["INIT_CWD"] },
+            { cwd: process.env.INIT_CWD },
         );
 
         if (result.output.toLowerCase().includes("error")) {

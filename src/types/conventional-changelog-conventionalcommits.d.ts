@@ -1,4 +1,4 @@
 declare module "conventional-changelog-conventionalcommits" {
-    function createPreset<T>(config: T): unknown;
+    function createPreset(config: unknown): unknown;
     export = createPreset;
 }
