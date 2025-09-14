@@ -25,9 +25,9 @@ const config = {
             rules: {
                 /* require a jira reference at the end of the commit message */
                 "jira-reference": ({ subject }) => {
-                    const jira = /\((refs|fixes) [A-Z]+-[0-9]+\)$/;
+                    const jira = /\((refs|fixes) [A-Z]+-\d+\)$/;
                     return [
-                        Boolean(subject && subject.match(jira)),
+                        Boolean(subject?.match(jira)),
                         messages.MISSING_JIRA_REFERENCE,
                     ];
                 },
