@@ -85,6 +85,8 @@
     "@forsakringskassan/eslint-config-typescript-typeinfo": "13.0.3",
     "@forsakringskassan/jest-config": "29.9.0",
     "@html-validate/release-scripts": "6.9.6",
+    "@tsconfig/node22": "22.0.2",
+    "@tsconfig/strictest": "2.0.5",
     "@types/is-ci": "3.0.4",
     "@types/jest": "29.5.14",
     "@types/node": "22.18.5",
@@ -93,7 +95,8 @@
     "memfs": "4.42.0",
     "npm-pkg-lint": "4.0.5",
     "npm-run-all2": "8.0.4",
-    "rimraf": "6.0.1"
+    "rimraf": "6.0.1",
+    "typescript": "5.9.2"
   },
   "peerDependencies": {
     "ts-node": "^10"
