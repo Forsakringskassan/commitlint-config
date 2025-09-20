@@ -63,7 +63,7 @@ function configureCommitTemplate(): void {
 
 /* Setup hooks */
 async function setupGitHooks(): Promise<void> {
-    const originCwd: string = process.env.INIT_CWD ?? "";
+    const originCwd: string = process.env["INIT_CWD"] ?? "";
 
     const packageJson = JSON.parse(
         await fsp.readFile(path.join(originCwd, "package.json"), {
@@ -111,7 +111,7 @@ async function setupGitHooks(): Promise<void> {
                     "@forsakringskassan/commitlint-config/hooks.js",
                 ),
             ],
-            { cwd: process.env.INIT_CWD },
+            { cwd: process.env["INIT_CWD"] },
         );
 
         if (result.output.toLowerCase().includes("error")) {
