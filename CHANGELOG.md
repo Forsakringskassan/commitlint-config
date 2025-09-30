@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [3.1.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.9...v3.1.0) (2025-09-30)
+
+### Features
+
+* **deps:** update commitlint monorepo to v20 ([d31c68c](https://github.com/Forsakringskassan/commitlint-config/commit/d31c68c3f2d5eda034456d595639faec56e745fd))
+
+### Bug Fixes
+
+* **deps:** update dependency lint-staged to v16.2.1 ([cc6a898](https://github.com/Forsakringskassan/commitlint-config/commit/cc6a8987d643acd9e56f7fb46d6e250f0b7739c4))
+
 ## [3.0.9](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.8...v3.0.9) (2025-09-26)
 
 ### Bug Fixes
