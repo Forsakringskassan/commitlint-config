@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.1.1](https://github.com/Forsakringskassan/commitlint-config/compare/v3.1.0...v3.1.1) (2025-10-03)
+
+### Bug Fixes
+
+* **deps:** update dependency lint-staged to v16.2.3 ([5aee80a](https://github.com/Forsakringskassan/commitlint-config/commit/5aee80ab8cc8334afd47c3736065d77db86f0897))
+
 ## [3.1.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.0.9...v3.1.0) (2025-09-30)
 
 ### Features
