@@ -92,7 +92,7 @@
     "@types/node": "22.18.8",
     "conventional-changelog-conventionalcommits": "9.1.0",
     "esbuild": "0.25.10",
-    "memfs": "4.47.0",
+    "memfs": "4.48.1",
     "npm-pkg-lint": "4.1.1",
     "npm-run-all2": "8.0.4",
     "rimraf": "6.0.1",
