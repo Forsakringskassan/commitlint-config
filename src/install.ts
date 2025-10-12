@@ -1,15 +1,15 @@
+import * as fsp from "fs/promises";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
-import * as fsp from "fs/promises";
-import spawn, { SubprocessError } from "nano-spawn";
 import isCI from "is-ci";
+import spawn, { SubprocessError } from "nano-spawn";
 
 import {
     type PackageJsonType,
+    existingHuskyConfig,
     existingSimpleGitConfig,
     invalidInstalledPackages,
-    existingHuskyConfig,
 } from "./verifyPackage";
 
 /**

@@ -1,6 +1,6 @@
-import { type Options } from "conventional-commits-parser";
 import lint from "@commitlint/lint";
 import load from "@commitlint/load";
+import { type Options } from "conventional-commits-parser";
 import messages from "../messages";
 import config from "./default";
 
