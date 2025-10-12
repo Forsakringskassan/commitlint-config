@@ -1,6 +1,6 @@
 import { fileURLToPath } from "node:url";
-import { type UserConfig } from "@commitlint/types";
 import preset from "@commitlint/config-conventional";
+import { type UserConfig } from "@commitlint/types";
 
 const config = {
     parserPreset: fileURLToPath(new URL("../parser.js", import.meta.url)),

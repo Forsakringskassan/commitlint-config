@@ -1,6 +1,6 @@
 import { fileURLToPath } from "node:url";
-import { type UserConfig } from "@commitlint/types";
 import preset from "@commitlint/config-conventional";
+import { type UserConfig } from "@commitlint/types";
 import messages from "../messages";
 
 const config = {

@@ -5,9 +5,9 @@ type NodeFs = typeof fs;
 
 import {
     type PackageJsonType,
-    invalidInstalledPackages,
-    existingSimpleGitConfig,
     existingHuskyConfig,
+    existingSimpleGitConfig,
+    invalidInstalledPackages,
 } from "./verifyPackage";
 
 let consoleErrorSpy: jest.SpyInstance;
