@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [3.2.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.1.2...v3.2.0) (2025-10-17)
+
+### Features
+
+* **deps:** update dependency nano-spawn to v2 ([aca8e41](https://github.com/Forsakringskassan/commitlint-config/commit/aca8e412d75055c438958f58f162bf0ea18d6b04))
+
+### Bug Fixes
+
+* **deps:** update dependency lint-staged to v16.2.4 ([d04594c](https://github.com/Forsakringskassan/commitlint-config/commit/d04594cdebdf1c36e0070f6d3b402c9b3528b6d2))
+
 ## [3.1.2](https://github.com/Forsakringskassan/commitlint-config/compare/v3.1.1...v3.1.2) (2025-10-10)
 
 ### Bug Fixes
