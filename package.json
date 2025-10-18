@@ -91,7 +91,7 @@
     "@types/jest": "29.5.14",
     "@types/node": "22.18.10",
     "conventional-changelog-conventionalcommits": "9.1.0",
-    "esbuild": "0.25.10",
+    "esbuild": "0.25.11",
     "memfs": "4.49.0",
     "npm-pkg-lint": "4.1.2",
     "npm-run-all2": "8.0.4",
