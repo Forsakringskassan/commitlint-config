@@ -86,7 +86,7 @@
     "@forsakringskassan/jest-config": "30.0.2",
     "@html-validate/release-scripts": "7.1.0",
     "@tsconfig/node22": "22.0.3",
-    "@tsconfig/strictest": "2.0.7",
+    "@tsconfig/strictest": "2.0.8",
     "@types/is-ci": "3.0.4",
     "@types/jest": "29.5.14",
     "@types/node": "22.19.1",
