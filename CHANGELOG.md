@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [3.3.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.2.1...v3.3.0) (2025-12-05)
+
+### Features
+
+* **deps:** update dependency glob to v13 ([b0a7c85](https://github.com/Forsakringskassan/commitlint-config/commit/b0a7c85e58d73186ca988ee2169c0325658f98c7))
+
+### Bug Fixes
+
+* **deps:** update dependency lint-staged to v16.2.7 ([60311f9](https://github.com/Forsakringskassan/commitlint-config/commit/60311f9ab3b97fc7d254a7433d8a506018072cac))
+
 ## [3.2.1](https://github.com/Forsakringskassan/commitlint-config/compare/v3.2.0...v3.2.1) (2025-10-31)
 
 ### Bug Fixes
