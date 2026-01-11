@@ -66,8 +66,8 @@
     "preset": "@forsakringskassan/jest-config/esm"
   },
   "dependencies": {
-    "@commitlint/cli": "20.3.0",
-    "@commitlint/config-conventional": "20.3.0",
+    "@commitlint/cli": "20.3.1",
+    "@commitlint/config-conventional": "20.3.1",
     "glob": "^13.0.0",
     "is-ci": "^4.0.0",
     "lint-staged": "16.2.7",
@@ -75,9 +75,9 @@
     "simple-git-hooks": "2.13.1"
   },
   "devDependencies": {
-    "@commitlint/format": "20.2.0",
-    "@commitlint/lint": "20.3.0",
-    "@commitlint/load": "20.3.0",
+    "@commitlint/format": "20.3.1",
+    "@commitlint/lint": "20.3.1",
+    "@commitlint/load": "20.3.1",
     "@forsakringskassan/eslint-config": "13.2.6",
     "@forsakringskassan/eslint-config-cli": "13.2.0",
     "@forsakringskassan/eslint-config-jest": "13.2.9",
