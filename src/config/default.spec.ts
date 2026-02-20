@@ -1,6 +1,6 @@
 import lint from "@commitlint/lint";
 import load from "@commitlint/load";
-import { type Options } from "conventional-commits-parser";
+import { type ParserOptions } from "conventional-commits-parser";
 import messages from "../messages";
 import config from "./default";
 
@@ -43,7 +43,7 @@ it.each`
     ${"chore(deps): lorem ipsum (refs SB-4982)"}
 `('"$message" should be valid', async ({ message }) => {
     const result = await lint(message as string, opts.rules, {
-        parserOpts: opts.parserPreset?.parserOpts as Options,
+        parserOpts: opts.parserPreset?.parserOpts as ParserOptions,
         plugins: opts.plugins,
     });
     expect(result.valid).toBeTruthy();
@@ -62,7 +62,7 @@ it.each`
     ${"fix: (refs SB-4982) lorem ipsum"}   | ${[errors.jiraReference]}
 `('"$message" should be invalid', async ({ message, errors }) => {
     const result = await lint(message as string, opts.rules, {
-        parserOpts: opts.parserPreset?.parserOpts as Options,
+        parserOpts: opts.parserPreset?.parserOpts as ParserOptions,
         plugins: opts.plugins,
     });
     expect(result.valid).toBeFalsy();
