@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [3.3.4](https://github.com/Forsakringskassan/commitlint-config/compare/v3.3.3...v3.3.4) (2026-02-27)
+
+### Bug Fixes
+
+* **deps:** update commitlint monorepo ([b9d0a8c](https://github.com/Forsakringskassan/commitlint-config/commit/b9d0a8c652997456c6d8649d4c1c599ac893e8b4))
+* **deps:** update commitlint monorepo to v20.4.2 ([459bf3b](https://github.com/Forsakringskassan/commitlint-config/commit/459bf3b66ce6dd17511cc9be2502852b74940451))
+
 ## [3.3.3](https://github.com/Forsakringskassan/commitlint-config/compare/v3.3.2...v3.3.3) (2026-01-16)
 
 ### Bug Fixes
