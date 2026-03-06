@@ -1,6 +1,6 @@
-import * as fsp from "fs/promises";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
+import * as fsp from "node:fs/promises";
 import path from "node:path";
 import isCI from "is-ci";
 import spawn, { SubprocessError } from "nano-spawn";
@@ -10,7 +10,7 @@ import {
     existingHuskyConfig,
     existingSimpleGitConfig,
     invalidInstalledPackages,
-} from "./verifyPackage";
+} from "./verify-package";
 
 /**
  * Find the .git directory and return the absolute path.
@@ -67,7 +67,7 @@ async function setupGitHooks(): Promise<void> {
 
     const packageJson = JSON.parse(
         await fsp.readFile(path.join(originCwd, "package.json"), {
-            encoding: "utf-8",
+            encoding: "utf8",
         }),
     ) as PackageJsonType;
 
