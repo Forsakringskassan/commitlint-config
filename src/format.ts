@@ -1,3 +1,1 @@
-import { format } from "@commitlint/format";
-
-export default format;
+export { format as default } from "@commitlint/format";

@@ -8,7 +8,7 @@ import {
     existingHuskyConfig,
     existingSimpleGitConfig,
     invalidInstalledPackages,
-} from "./verifyPackage";
+} from "./verify-package";
 
 let consoleErrorSpy: jest.SpyInstance;
 

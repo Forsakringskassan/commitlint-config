@@ -12,13 +12,13 @@ export const nonAllowedPackages = ["husky", "simple-git-hooks", "lint-staged"];
 export function invalidInstalledPackages(
     packageJson: PackageJsonType,
 ): boolean {
-    const dependencies = [
+    const dependencies = new Set([
         ...Object.keys(packageJson.dependencies ?? {}),
         ...Object.keys(packageJson.devDependencies ?? {}),
-    ];
+    ]);
 
     for (const item of nonAllowedPackages) {
-        if (dependencies.includes(item)) {
+        if (dependencies.has(item)) {
             console.error(
                 `
                 @forsakringskassan/commitlint-config
