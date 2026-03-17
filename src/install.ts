@@ -107,9 +107,7 @@ async function setupGitHooks(): Promise<void> {
             [
                 "exec",
                 "simple-git-hooks",
-                require.resolve(
-                    "@forsakringskassan/commitlint-config/hooks.js",
-                ),
+                require.resolve("@forsakringskassan/commitlint-config/hooks.js"),
             ],
             { cwd: process.env["INIT_CWD"] },
         );
