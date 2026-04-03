@@ -70,7 +70,7 @@
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
     "conventional-commits-filter": "5.0.0",
-    "conventional-commits-parser": "6.3.0",
+    "conventional-commits-parser": "6.4.0",
     "glob": "^13.0.0",
     "is-ci": "^4.0.0",
     "lint-staged": "16.4.0",
