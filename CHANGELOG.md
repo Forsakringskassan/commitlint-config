@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.3.9](https://github.com/Forsakringskassan/commitlint-config/compare/v3.3.8...v3.3.9) (2026-04-03)
+
+### Bug Fixes
+
+* **deps:** update dependency conventional-commits-parser to v6.4.0 ([b088942](https://github.com/Forsakringskassan/commitlint-config/commit/b088942843b419c73b7f34fd11b2300e65a128e1))
+
 ## [3.3.8](https://github.com/Forsakringskassan/commitlint-config/compare/v3.3.7...v3.3.8) (2026-03-19)
 
 ### Bug Fixes
