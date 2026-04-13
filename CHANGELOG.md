@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.3.11](https://github.com/Forsakringskassan/commitlint-config/compare/v3.3.10...v3.3.11) (2026-04-13)
+
+### Bug Fixes
+
+* update jira regex to be able to handle numbers in project key ([867a1fc](https://github.com/Forsakringskassan/commitlint-config/commit/867a1fc7cbe80f04d91dc3c1555a6a636ad0c0bb))
+
 ## [3.3.10](https://github.com/Forsakringskassan/commitlint-config/compare/v3.3.9...v3.3.10) (2026-04-04)
 
 ### Bug Fixes
