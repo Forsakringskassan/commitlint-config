@@ -96,7 +96,7 @@
     "@types/node": "22.19.17",
     "conventional-changelog-conventionalcommits": "9.3.1",
     "esbuild": "0.28.0",
-    "memfs": "4.57.1",
+    "memfs": "4.57.2",
     "npm-pkg-lint": "4.6.5",
     "npm-run-all2": "8.0.4",
     "rimraf": "6.1.3",
