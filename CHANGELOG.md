@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.5.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.4.0...v3.5.0) (2026-05-10)
+
+### Features
+
+* **deps:** remove unused `ts-node` dependency ([f7689d7](https://github.com/Forsakringskassan/commitlint-config/commit/f7689d700b354190f67b304443f712c3c1d43010))
+
 ## [3.4.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.3.13...v3.4.0) (2026-05-10)
 
 ### Features
