@@ -87,7 +87,7 @@
     "@forsakringskassan/eslint-config-typescript": "14.1.23",
     "@forsakringskassan/eslint-config-typescript-typeinfo": "14.1.23",
     "@forsakringskassan/jest-config": "30.2.3",
-    "@forsakringskassan/prettier-config": "3.3.9",
+    "@forsakringskassan/prettier-config": "3.3.10",
     "@html-validate/release-scripts": "7.2.0",
     "@tsconfig/node22": "22.0.5",
     "@tsconfig/strictest": "2.0.8",
