@@ -81,7 +81,7 @@
     "@commitlint/format": "21.0.1",
     "@commitlint/lint": "21.0.1",
     "@commitlint/load": "21.0.1",
-    "@forsakringskassan/eslint-config": "14.1.20",
+    "@forsakringskassan/eslint-config": "14.1.27",
     "@forsakringskassan/eslint-config-cli": "14.1.20",
     "@forsakringskassan/eslint-config-jest": "14.1.9",
     "@forsakringskassan/eslint-config-typescript": "14.1.26",
