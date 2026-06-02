@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.6.5](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.4...v3.6.5) (2026-06-02)
+
+### Bug Fixes
+
+* **deps:** update commitlint monorepo to v21.0.2 ([0c95cb8](https://github.com/Forsakringskassan/commitlint-config/commit/0c95cb86295192618be2515447b0ef4920f6cde1))
+
 ## [3.6.4](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.3...v3.6.4) (2026-05-19)
 
 ### Bug Fixes
