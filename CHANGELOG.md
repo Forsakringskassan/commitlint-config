@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.6.6](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.5...v3.6.6) (2026-06-02)
+
+### Bug Fixes
+
+* **deps:** update dependency lint-staged to v17.0.6 ([1e5ed13](https://github.com/Forsakringskassan/commitlint-config/commit/1e5ed13e53a81381a340a58356d2380d1b0fdab4))
+
 ## [3.6.5](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.4...v3.6.5) (2026-06-02)
 
 ### Bug Fixes
