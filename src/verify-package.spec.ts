@@ -1,5 +1,14 @@
 import type * as fs from "node:fs";
 import { createFsFromVolume, vol } from "memfs";
+import {
+    type MockInstance,
+    afterEach,
+    beforeEach,
+    describe,
+    expect,
+    it,
+    vi,
+} from "vitest";
 
 type NodeFs = typeof fs;
 
@@ -10,12 +19,10 @@ import {
     invalidInstalledPackages,
 } from "./verify-package";
 
-let consoleErrorSpy: jest.SpyInstance;
+let consoleErrorSpy: MockInstance;
 
 beforeEach(() => {
-    consoleErrorSpy = import.meta.jest
-        .spyOn(console, "error")
-        .mockImplementation();
+    consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(vi.fn());
 });
 
 afterEach(() => {
@@ -24,6 +31,7 @@ afterEach(() => {
 
 describe("invalidInstalledPackages", () => {
     it("should return false if package contains no dependencies", () => {
+        expect.assertions(4);
         let packageJson: PackageJsonType = {};
         expect(invalidInstalledPackages(packageJson)).toBe(false);
         expect(consoleErrorSpy).not.toHaveBeenCalled();
@@ -34,6 +42,7 @@ describe("invalidInstalledPackages", () => {
     });
 
     it("should return false if no non-allowed packages are present", () => {
+        expect.assertions(2);
         const packageJson: PackageJsonType = {
             dependencies: {
                 a: "18.0.0",
@@ -48,6 +57,7 @@ describe("invalidInstalledPackages", () => {
     });
 
     it("should return true if a non-allowed package is in dependencies", () => {
+        expect.assertions(2);
         const packageJson: PackageJsonType = {
             dependencies: {
                 husky: "7.0.0",
@@ -61,6 +71,7 @@ describe("invalidInstalledPackages", () => {
     });
 
     it("should return true if a non-allowed package is in devDependencies", () => {
+        expect.assertions(2);
         const packageJson: PackageJsonType = {
             devDependencies: {
                 "simple-git-hooks": "7.0.0",
@@ -78,6 +89,7 @@ describe("invalidInstalledPackages", () => {
 
 describe("existingSimpleGitConfig", () => {
     it('should return false if "simple-git-hooks" is not in package.json', () => {
+        expect.assertions(2);
         const packageJson: PackageJsonType = {
             dependencies: {
                 react: "18.0.0",
@@ -91,6 +103,7 @@ describe("existingSimpleGitConfig", () => {
     });
 
     it('should return true and log error if "simple-git-hooks" is present in package.json', () => {
+        expect.assertions(2);
         const packageJson: PackageJsonType = {
             dependencies: {},
             devDependencies: {},
@@ -105,12 +118,14 @@ describe("existingSimpleGitConfig", () => {
 
 describe("existingHuskyConfig", () => {
     let fs: NodeFs;
+
     beforeEach(() => {
         vol.reset();
         fs = createFsFromVolume(vol) as unknown as NodeFs;
     });
 
     it("should return true if husky folder exists", async () => {
+        expect.assertions(2);
         vol.fromJSON({
             "package.json": JSON.stringify({ name: "mock-package" }),
             ".husky/precommit": "...",
@@ -122,6 +137,7 @@ describe("existingHuskyConfig", () => {
     });
 
     it("should return false if no husky folder exists", async () => {
+        expect.assertions(2);
         vol.fromJSON({
             "package.json": JSON.stringify({ name: "mock-package" }),
         });
@@ -131,6 +147,7 @@ describe("existingHuskyConfig", () => {
     });
 
     it("Husky internal files should be ignored, they are later removed in postinstall script", async () => {
+        expect.assertions(2);
         vol.fromJSON({
             "package.json": JSON.stringify({ name: "mock-package" }),
             ".husky/_/.gitignore": "",

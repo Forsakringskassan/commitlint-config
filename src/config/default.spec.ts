@@ -1,6 +1,7 @@
 import lint from "@commitlint/lint";
 import load from "@commitlint/load";
 import { type ParserOptions } from "conventional-commits-parser";
+import { beforeEach, expect, it } from "vitest";
 import messages from "../messages";
 import config from "./default";
 
@@ -43,6 +44,7 @@ it.each`
     ${"chore(deps): lorem ipsum (refs SB-4982)"}
     ${"fix: lorem ipsum (refs FNS3-4982)"}
 `('"$message" should be valid', async ({ message }) => {
+    expect.assertions(2);
     const result = await lint(message as string, opts.rules, {
         parserOpts: opts.parserPreset?.parserOpts as ParserOptions,
         plugins: opts.plugins,
@@ -62,6 +64,7 @@ it.each`
     ${"fix: lorem ipsum (foobar SB-4982)"} | ${[errors.jiraReference]}
     ${"fix: (refs SB-4982) lorem ipsum"}   | ${[errors.jiraReference]}
 `('"$message" should be invalid', async ({ message, errors }) => {
+    expect.assertions(2);
     const result = await lint(message as string, opts.rules, {
         parserOpts: opts.parserPreset?.parserOpts as ParserOptions,
         plugins: opts.plugins,
