@@ -5,6 +5,7 @@ import path from "node:path";
 import isCI from "is-ci";
 import spawn, { SubprocessError } from "nano-spawn";
 
+import { resolveInstallCwd, simpleGitHooksArgs } from "./install-hooks";
 import {
     type PackageJsonType,
     existingHuskyConfig,
@@ -63,7 +64,11 @@ function configureCommitTemplate(): void {
 
 /* Setup hooks */
 async function setupGitHooks(): Promise<void> {
-    const originCwd: string = process.env["INIT_CWD"] ?? "";
+    const originCwd = resolveInstallCwd(
+        process.cwd(),
+        process.env["INIT_CWD"],
+        findGit(process.cwd()),
+    );
 
     const packageJson = JSON.parse(
         await fsp.readFile(path.join(originCwd, "package.json"), {
@@ -102,15 +107,9 @@ async function setupGitHooks(): Promise<void> {
             }
         }
 
-        const result = await spawn(
-            "npm",
-            [
-                "exec",
-                "simple-git-hooks",
-                require.resolve("@forsakringskassan/commitlint-config/hooks.js"),
-            ],
-            { cwd: process.env["INIT_CWD"] },
-        );
+        const result = await spawn(process.execPath, simpleGitHooksArgs(), {
+            cwd: originCwd,
+        });
 
         if (result.output.toLowerCase().includes("error")) {
             console.log(result.output);
