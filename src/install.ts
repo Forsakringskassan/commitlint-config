@@ -80,48 +80,45 @@ async function setupGitHooks(): Promise<void> {
         process.exit(1);
     }
 
-    if (!isCI) {
-        // Unset git config made by Husky
-        // https://typicode.github.io/husky/troubleshoot.html#git-hooks-not-working-after-uninstall
-        try {
-            await spawn("git", ["config", "--unset", "core.hooksPath"], {
-                cwd: originCwd,
-            });
-            fs.rmSync(path.join(originCwd, ".husky/_"), {
-                recursive: true,
-                force: true,
-            });
-        } catch (error: unknown) {
-            if (!(error instanceof SubprocessError && error.exitCode === 5)) {
-                /*
-                code 5 equals unsetting an option which does not exist,
-                this is expected if the consumer has not previously used Husky.
-                */
-                console.error(error);
-                process.exit(1);
-            }
-        }
-
-        const result = await spawn(
-            "npm",
-            [
-                "exec",
-                "simple-git-hooks",
-                require.resolve("@forsakringskassan/commitlint-config/hooks.js"),
-            ],
-            { cwd: process.env["INIT_CWD"] },
-        );
-
-        if (result.output.toLowerCase().includes("error")) {
-            console.log(result.output);
+    // Unset git config made by Husky
+    // https://typicode.github.io/husky/troubleshoot.html#git-hooks-not-working-after-uninstall
+    try {
+        await spawn("git", ["config", "--unset", "core.hooksPath"], {
+            cwd: originCwd,
+        });
+        fs.rmSync(path.join(originCwd, ".husky/_"), {
+            recursive: true,
+            force: true,
+        });
+    } catch (error: unknown) {
+        if (!(error instanceof SubprocessError && error.exitCode === 5)) {
+            /*
+            code 5 equals unsetting an option which does not exist,
+            this is expected if the consumer has not previously used Husky.
+            */
+            console.error(error);
             process.exit(1);
         }
-        console.log(result.output);
     }
+
+    const result = await spawn(
+        "npm",
+        [
+            "exec",
+            "simple-git-hooks",
+            require.resolve("@forsakringskassan/commitlint-config/hooks.js"),
+        ],
+        { cwd: process.env["INIT_CWD"] },
+    );
+
+    if (result.output.toLowerCase().includes("error")) {
+        console.log(result.output);
+        process.exit(1);
+    }
+    console.log(result.output);
 }
 
-await setupGitHooks();
-
 if (!isCI) {
+    await setupGitHooks();
     configureCommitTemplate();
 }
