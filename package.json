@@ -51,7 +51,9 @@
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "pretest": "run-s eslint prettier:check",
-    "test": "vitest run"
+    "test": "vitest run && vitest run --mode integration",
+    "test:unit": "vitest run",
+    "test:integration": "vitest --mode integration"
   },
   "commitlint": {
     "extends": [

@@ -1,0 +1,39 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`install (integration) > should install git hooks after manually running commitlint-config command > commit-msg 1`] = `
+"#!/bin/sh
+
+if [ "$SKIP_SIMPLE_GIT_HOOKS" = "1" ]; then
+    echo "[INFO] SKIP_SIMPLE_GIT_HOOKS is set to 1, skipping hook."
+    exit 0
+fi
+
+if [ -f "$SIMPLE_GIT_HOOKS_RC" ]; then
+    . "$SIMPLE_GIT_HOOKS_RC"
+fi
+
+npm exec commitlint -- --edit "$1""
+`;
+
+exports[`install (integration) > should install git hooks after manually running commitlint-config command > pre-commit 1`] = `
+"#!/bin/sh
+
+if [ "$SKIP_SIMPLE_GIT_HOOKS" = "1" ]; then
+    echo "[INFO] SKIP_SIMPLE_GIT_HOOKS is set to 1, skipping hook."
+    exit 0
+fi
+
+if [ -f "$SIMPLE_GIT_HOOKS_RC" ]; then
+    . "$SIMPLE_GIT_HOOKS_RC"
+fi
+
+npm exec lint-staged -- --config "<tempDir>/node_modules/@forsakringskassan/commitlint-config/lint-staged.js" "$@""
+`;
+
+exports[`install (integration) > should install git hooks after manually running commitlint-config command > stdout 1`] = `
+"[INFO] Successfully set the pre-commit with command: npm exec lint-staged -- --config "<tempDir>/node_modules/@forsakringskassan/commitlint-config/lint-staged.js" "$@"
+[INFO] Successfully set the commit-msg with command: npm exec commitlint -- --edit "$1"
+[INFO] Successfully set all git hooks
+git config commit.template node_modules/@forsakringskassan/commitlint-config/gitmessage
+"
+`;
