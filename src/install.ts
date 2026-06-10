@@ -1,6 +1,6 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
-import * as fsp from "node:fs/promises";
+import { readFile, rm } from "node:fs/promises";
 import path from "node:path";
 import isCI from "is-ci";
 import spawn, { SubprocessError } from "nano-spawn";
@@ -66,7 +66,7 @@ async function setupGitHooks(): Promise<void> {
     const originCwd: string = process.env["INIT_CWD"] ?? "";
 
     const packageJson = JSON.parse(
-        await fsp.readFile(path.join(originCwd, "package.json"), {
+        await readFile(path.join(originCwd, "package.json"), {
             encoding: "utf8",
         }),
     ) as PackageJsonType;
@@ -86,7 +86,7 @@ async function setupGitHooks(): Promise<void> {
         await spawn("git", ["config", "--unset", "core.hooksPath"], {
             cwd: originCwd,
         });
-        fs.rmSync(path.join(originCwd, ".husky/_"), {
+        await rm(path.join(originCwd, ".husky/_"), {
             recursive: true,
             force: true,
         });
