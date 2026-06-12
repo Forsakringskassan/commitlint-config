@@ -6,7 +6,7 @@ import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import packageJson from "../package.json" assert { type: "json" };
+import packageJson from "../package.json" with { type: "json" };
 
 const rootDir = path.join(import.meta.dirname, "..");
 const tarballName = `forsakringskassan-commitlint-config-${packageJson.version}.tgz`;
@@ -80,5 +80,19 @@ describe("install (integration)", () => {
         run(`npm install "${tarball}"`);
 
         expect(fs.existsSync(hookFile(tempDir, "commit-msg"))).toBe(true);
+    });
+
+    it("should warn and skip adding hooks when not in a git repository", () => {
+        expect.assertions(2);
+
+        // Simulate a non-git repository
+        fs.rmSync(path.join(tempDir, ".git"), { recursive: true, force: true });
+
+        const { stdout, stderr } = run(
+            `npm install --foreground-scripts "${tarball}"`,
+        );
+
+        expect(stdout + stderr).toContain("Failed to locate git directory");
+        expect(fs.existsSync(path.join(tempDir, ".git", "hooks"))).toBe(false);
     });
 });

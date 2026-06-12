@@ -5,6 +5,8 @@ import path from "node:path";
 import isCI from "is-ci";
 import spawn, { SubprocessError } from "nano-spawn";
 
+import packageJson from "../package.json" with { type: "json" };
+
 import {
     type PackageJsonType,
     existingHuskyConfig,
@@ -45,13 +47,7 @@ function findGit(cwd: string): string | null {
 /**
  * Calls "git config commit.template .."
  */
-function configureCommitTemplate(): void {
-    const gitDir = findGit(process.cwd());
-    if (!gitDir) {
-        console.warn("Failed to locate git directory, skipping gitmessage");
-        return;
-    }
-
+function configureCommitTemplate(gitDir: string): void {
     const relPath = path.relative(gitDir, path.join(__dirname, ".."));
     const gitmessage = path.join(relPath, "gitmessage");
     const args = ["config", "commit.template", gitmessage];
@@ -119,6 +115,13 @@ async function setupGitHooks(): Promise<void> {
 }
 
 if (!isCI) {
-    await setupGitHooks();
-    configureCommitTemplate();
+    const gitDir = findGit(process.cwd());
+    if (!gitDir) {
+        console.warn(
+            `${packageJson.name} : Failed to locate git directory, skipping gitmessage and git hooks setup.`,
+        );
+    } else {
+        await setupGitHooks();
+        configureCommitTemplate(gitDir);
+    }
 }
