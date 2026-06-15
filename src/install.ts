@@ -1,11 +1,12 @@
 import { spawnSync } from "node:child_process";
-import fs from "node:fs";
-import { readFile, rm } from "node:fs/promises";
+import fs, { existsSync } from "node:fs";
+import { readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import isCI from "is-ci";
 import spawn, { SubprocessError } from "nano-spawn";
 
 import packageJson from "../package.json" with { type: "json" };
+import hooks from "./hooks";
 
 import {
     type PackageJsonType,
@@ -27,7 +28,7 @@ function findGit(cwd: string): string | null {
     while (true) {
         const search = path.join(current, ".git");
 
-        if (fs.existsSync(search)) {
+        if (existsSync(search)) {
             return path.resolve(current);
         }
 
@@ -58,7 +59,7 @@ function configureCommitTemplate(gitDir: string): void {
 }
 
 /* Setup hooks */
-async function setupGitHooks(): Promise<void> {
+async function setupGitHooks(gitDir: string): Promise<void> {
     const originCwd: string = process.env["INIT_CWD"] ?? "";
 
     const packageJson = JSON.parse(
@@ -97,21 +98,16 @@ async function setupGitHooks(): Promise<void> {
         }
     }
 
-    const result = await spawn(
-        "npm",
-        [
-            "exec",
-            "simple-git-hooks",
-            require.resolve("@forsakringskassan/commitlint-config/hooks.js"),
-        ],
-        { cwd: originCwd },
-    );
+    const hooksDir = path.join(gitDir, ".git", "hooks");
 
-    if (result.output.toLowerCase().includes("error")) {
-        console.log(result.output);
-        process.exit(1);
+    for (const [name, command] of Object.entries(hooks)) {
+        const hookPath = path.join(hooksDir, name);
+        console.info(`Writing ${hookPath}`);
+        await writeFile(hookPath, `#!/bin/sh\n${command}`, {
+            encoding: "utf8",
+            mode: 0o755,
+        });
     }
-    console.log(result.output);
 }
 
 if (isCI) {
@@ -132,5 +128,5 @@ if (!gitDir) {
     }
 }
 
-await setupGitHooks();
+await setupGitHooks(gitDir);
 configureCommitTemplate(gitDir);

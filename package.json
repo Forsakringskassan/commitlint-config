@@ -18,8 +18,7 @@
     ".": "./dist/config/default.js",
     "./default": "./dist/config/default.js",
     "./no-jira": "./dist/config/no-jira.js",
-    "./lint-staged": "./lint-staged.js",
-    "./hooks.js": "./hooks.js"
+    "./lint-staged": "./lint-staged.js"
   },
   "main": "dist/config/default.js",
   "bin": {
@@ -47,7 +46,7 @@
     "pkg:mangle:pack": "release-prepack package.json --bundle --retain-scripts",
     "pkg:mangle:add": "npm pkg set scripts.postinstall=\"node bin/install.js\"",
     "pkg:restore": "release-postpack package.json",
-    "prepare": "simple-git-hooks hooks.js && git config commit.template gitmessage",
+    "prepare": "simple-git-hooks src/hooks.ts && git config commit.template gitmessage",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "pretest": "run-s eslint prettier:check",
@@ -76,8 +75,7 @@
     "glob": "^13.0.0",
     "is-ci": "^4.0.0",
     "lint-staged": "17.0.7",
-    "nano-spawn": "2.1.0",
-    "simple-git-hooks": "2.13.1"
+    "nano-spawn": "2.1.0"
   },
   "devDependencies": {
     "@commitlint/format": "21.0.1",
@@ -100,6 +98,7 @@
     "npm-pkg-lint": "5.1.7",
     "npm-run-all2": "9.0.2",
     "rimraf": "6.1.3",
+    "simple-git-hooks": "2.13.1",
     "typescript": "6.0.3",
     "vitest": "4.1.8"
   },
@@ -108,7 +107,6 @@
     "npm": ">= 10.0.0"
   },
   "externalDependencies": [
-    "lint-staged",
-    "simple-git-hooks"
+    "lint-staged"
   ]
 }
