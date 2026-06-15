@@ -114,14 +114,23 @@ async function setupGitHooks(): Promise<void> {
     console.log(result.output);
 }
 
-if (!isCI) {
-    const gitDir = findGit(process.cwd());
-    if (!gitDir) {
+if (isCI) {
+    process.exit(0);
+}
+
+const gitDir = findGit(process.cwd());
+if (!gitDir) {
+    const isPostinstall = process.env["npm_lifecycle_event"] === "postinstall";
+    if (isPostinstall) {
         console.warn(
             `${packageJson.name} : Failed to locate git directory, skipping gitmessage and git hooks setup.`,
         );
+        process.exit(0);
     } else {
-        await setupGitHooks();
-        configureCommitTemplate(gitDir);
+        console.error(`${packageJson.name} : Failed to locate git directory.`);
+        process.exit(1);
     }
 }
+
+await setupGitHooks();
+configureCommitTemplate(gitDir);
