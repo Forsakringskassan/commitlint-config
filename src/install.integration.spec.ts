@@ -22,7 +22,11 @@ describe("install (integration)", () => {
     let tempDir: string;
     const env: NodeJS.ProcessEnv = process.env;
 
-    function run(command: string): { stdout: string; stderr: string } {
+    function run(command: string): {
+        stdout: string;
+        stderr: string;
+        status: number | null;
+    } {
         /* eslint-disable-next-line sonarjs/os-command -- Static commands  */
         const result = spawnSync(command, {
             cwd: tempDir,
@@ -30,7 +34,11 @@ describe("install (integration)", () => {
             encoding: "utf8",
             shell: true,
         });
-        return { stdout: result.stdout, stderr: result.stderr };
+        return {
+            stdout: result.stdout,
+            stderr: result.stderr,
+            status: result.status,
+        };
     }
 
     beforeEach(async () => {
@@ -74,6 +82,19 @@ describe("install (integration)", () => {
         expect(preCommitContent).toMatchSnapshot("pre-commit");
     });
 
+    it("should not create git hooks when commitlint-config runs in CI", () => {
+        expect.assertions(3);
+
+        env["CI"] = "true";
+
+        run(`npm install "${tarball}" --ignore-scripts`);
+        const { stderr } = run("npm exec commitlint-config");
+
+        expect(stderr).toBe("");
+        expect(fs.existsSync(hookFile(tempDir, "commit-msg"))).toBe(false);
+        expect(fs.existsSync(hookFile(tempDir, "pre-commit"))).toBe(false);
+    });
+
     it("should install git hooks with postinstall script (Deprecated)", () => {
         expect.assertions(1);
 
@@ -94,5 +115,18 @@ describe("install (integration)", () => {
 
         expect(stdout + stderr).toContain("Failed to locate git directory");
         expect(fs.existsSync(path.join(tempDir, ".git", "hooks"))).toBe(false);
+    });
+
+    it("should exit with error when not in a git repository and run via commitlint-config", () => {
+        expect.assertions(2);
+
+        // Simulate a non-git repository
+        fs.rmSync(path.join(tempDir, ".git"), { recursive: true, force: true });
+
+        run(`npm install "${tarball}" --ignore-scripts`);
+        const result = run("npm exec commitlint-config");
+
+        expect(result.stderr).toContain("Failed to locate git directory");
+        expect(result.status).not.toBe(0);
     });
 });
