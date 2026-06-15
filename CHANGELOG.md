@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.6.8](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.7...v3.6.8) (2026-06-15)
+
+### Bug Fixes
+
+* should only try to add hooks in a git folder ([92bf12f](https://github.com/Forsakringskassan/commitlint-config/commit/92bf12f0ba4b4d5e13c8a197d1e21c1fe171e9a1))
+
 ## [3.6.7](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.6...v3.6.7) (2026-06-03)
 
 ### Bug Fixes
