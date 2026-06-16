@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.6.9](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.8...v3.6.9) (2026-06-16)
+
+### Bug Fixes
+
+* fail if no git folder ([541ce1c](https://github.com/Forsakringskassan/commitlint-config/commit/541ce1cf3b7ce64ac8ba5d95b18147743e3b72c0))
+
 ## [3.6.8](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.7...v3.6.8) (2026-06-15)
 
 ### Bug Fixes
