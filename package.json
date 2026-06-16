@@ -37,22 +37,20 @@
     "prebuild": "rimraf dist",
     "build": "tsc && node build.js ",
     "postbuild": "cp -R node_modules/@commitlint/config-validator/lib/commitlint.schema.json dist/",
-    "prepack": "run-s pkg:mangle",
-    "postpack": "run-s pkg:restore",
-    "prepublishOnly": "run-s pkg:mangle",
     "eslint": "eslint .",
     "eslint:fix": "eslint --fix .",
-    "pkg:mangle": "run-s pkg:mangle:*",
-    "pkg:mangle:pack": "release-prepack package.json --bundle --retain-scripts",
-    "pkg:mangle:add": "npm pkg set scripts.postinstall=\"node bin/install.js\"",
+    "prepack": "run-s pkg:mangle",
+    "postpack": "run-s pkg:restore",
+    "pkg:mangle": "release-prepack package.json --bundle --retain-scripts",
     "pkg:restore": "release-postpack package.json",
     "prepare": "simple-git-hooks src/hooks.ts && git config commit.template gitmessage",
+    "prepublishOnly": "run-s pkg:mangle",
     "prettier:check": "prettier . --check",
     "prettier:write": "prettier . --write",
     "pretest": "run-s eslint prettier:check",
     "test": "vitest run && vitest run --mode integration",
-    "test:unit": "vitest run",
-    "test:integration": "vitest --mode integration"
+    "test:integration": "vitest --mode integration",
+    "test:unit": "vitest run"
   },
   "commitlint": {
     "extends": [
