@@ -47,7 +47,6 @@ describe("install (integration)", () => {
         await mkdir(tempDir);
 
         env["CI"] = "false";
-        env["npm_config_ignore_scripts"] = undefined; // Could be removed once postinstall script is removed
 
         run("git init");
         run("npm init -y");
@@ -87,34 +86,12 @@ describe("install (integration)", () => {
 
         env["CI"] = "true";
 
-        run(`npm install "${tarball}" --ignore-scripts`);
+        run(`npm install "${tarball}"`);
         const { stderr } = run("npm exec commitlint-config");
 
         expect(stderr).toBe("");
         expect(fs.existsSync(hookFile(tempDir, "commit-msg"))).toBe(false);
         expect(fs.existsSync(hookFile(tempDir, "pre-commit"))).toBe(false);
-    });
-
-    it("should install git hooks with postinstall script (Deprecated)", () => {
-        expect.assertions(1);
-
-        run(`npm install "${tarball}"`);
-
-        expect(fs.existsSync(hookFile(tempDir, "commit-msg"))).toBe(true);
-    });
-
-    it("should warn and skip adding hooks when not in a git repository", () => {
-        expect.assertions(2);
-
-        // Simulate a non-git repository
-        fs.rmSync(path.join(tempDir, ".git"), { recursive: true, force: true });
-
-        const { stdout, stderr } = run(
-            `npm install --foreground-scripts "${tarball}"`,
-        );
-
-        expect(stdout + stderr).toContain("Failed to locate git directory");
-        expect(fs.existsSync(path.join(tempDir, ".git", "hooks"))).toBe(false);
     });
 
     it("should exit with error when not in a git repository and run via commitlint-config", () => {
@@ -123,7 +100,7 @@ describe("install (integration)", () => {
         // Simulate a non-git repository
         fs.rmSync(path.join(tempDir, ".git"), { recursive: true, force: true });
 
-        run(`npm install "${tarball}" --ignore-scripts`);
+        run(`npm install "${tarball}"`);
         const result = run("npm exec commitlint-config");
 
         expect(result.stderr).toContain("Failed to locate git directory");

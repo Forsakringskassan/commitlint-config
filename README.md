@@ -55,10 +55,11 @@ This package also provides the following git hooks:
 
 To validate commit messages as commits are created, you also need to set up the Git hooks.
 
-### Running setup manually (Recommended)
+```bash
+$ npm pkg set scripts.prepare="commitlint-config"
+```
 
-If you install with `--ignore-scripts`, the postinstall script will not run automatically.
-You can trigger the setup manually by calling the `commitlint-config` command, for example from your own `prepare` script:
+or manually edit your `package.json`
 
 ```json
 {
@@ -67,10 +68,6 @@ You can trigger the setup manually by calling the `commitlint-config` command, f
     }
 }
 ```
-
-### Postinstall script (Deprecated, will be removed in future releases)
-
-Hooks will automatically be installed if you omit `--no-script` when installing an application with this package. However, this is not a recommended approach and this alternative will be removed.
 
 ## Before installing this plugin
 
