@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## [4.0.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.9...v4.0.0) (2026-06-17)
+
+### ⚠ BREAKING CHANGES
+
+* The postinstall hook has been removed, and the package no longer automatically installs git hooks.
+Users must now manually add `commitlint-config` into their prepare section in package.json
+
+```bash
+$ npm pkg set scripts.prepare="commitlint-config"
+```
+
+Changes is due to updates in upcoming version of npm 12 which changes the behavior of postinstall scripts.
+More info regarding NPM 12 changes can be found here:
+* https://github.blog/changelog/2026-06-09-upcoming-breaking-changes-for-npm-v12/
+
+### Features
+
+* remove postinstall hook ([6a31338](https://github.com/Forsakringskassan/commitlint-config/commit/6a31338b7c6db891d7b440cd91d29826abd2fbeb))
+
+### Bug Fixes
+
+* create hooks without external dependency ([2732da8](https://github.com/Forsakringskassan/commitlint-config/commit/2732da814478417aff4b1eed1418a45e9cf61772))
+
 ## [3.6.9](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.8...v3.6.9) (2026-06-16)
 
 ### Bug Fixes
