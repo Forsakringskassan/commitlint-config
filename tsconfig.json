@@ -1,8 +1,6 @@
 {
     "extends": ["@tsconfig/node22", "@tsconfig/strictest"],
     "compilerOptions": {
-        /* ts-jest hardcodes moduleResolution node10 which is deprecated */
-        "ignoreDeprecations": "6.0",
         "rootDir": "./src/",
         "outDir": "./dist/",
         "noEmit": true,

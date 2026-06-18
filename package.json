@@ -61,10 +61,6 @@
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
   },
-  "jest": {
-    "collectCoverage": false,
-    "preset": "@forsakringskassan/jest-config/esm"
-  },
   "dependencies": {
     "@commitlint/cli": "21.0.2",
     "@commitlint/config-conventional": "21.0.2",
