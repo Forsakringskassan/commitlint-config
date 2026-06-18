@@ -1,7 +1,10 @@
 import { spawnSync } from "node:child_process";
+import { Console } from "node:console";
 import fs, { existsSync } from "node:fs";
 import { readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { Writable } from "node:stream";
+import { parseArgs } from "node:util";
 import isCI from "is-ci";
 import spawn, { SubprocessError } from "nano-spawn";
 
@@ -14,6 +17,25 @@ import {
     existingSimpleGitConfig,
     invalidInstalledPackages,
 } from "./verify-package";
+
+const args = parseArgs({
+    options: {
+        debug: {
+            type: "boolean",
+            default: false,
+        },
+    },
+});
+
+const debug = args.values.debug
+    ? new Console(process.stdout, process.stderr)
+    : new Console(
+          new Writable({
+              write(_chunk, _encoding, callback) {
+                  setImmediate(callback);
+              },
+          }),
+      );
 
 /**
  * Find the .git directory and return the absolute path.
@@ -52,7 +74,7 @@ function configureCommitTemplate(gitDir: string): void {
     const relPath = path.relative(gitDir, path.join(__dirname, ".."));
     const gitmessage = path.join(relPath, "gitmessage");
     const args = ["config", "commit.template", gitmessage];
-    console.info(`git ${args.join(" ")}`);
+    debug.log(`git ${args.join(" ")}`);
 
     /* eslint-disable-next-line sonarjs/no-os-command-from-path -- want to run git from PATH */
     spawnSync("git", args);
@@ -102,7 +124,7 @@ async function setupGitHooks(gitDir: string): Promise<void> {
 
     for (const [name, command] of Object.entries(hooks)) {
         const hookPath = path.join(hooksDir, name);
-        console.info(`Writing ${hookPath}`);
+        debug.log(`Writing ${hookPath}`);
         await writeFile(hookPath, `#!/bin/sh\n${command}`, {
             encoding: "utf8",
             mode: 0o755,
@@ -113,6 +135,9 @@ async function setupGitHooks(gitDir: string): Promise<void> {
 if (isCI) {
     process.exit(0);
 }
+
+debug.group(packageJson.name);
+debug.log();
 
 const gitDir = findGit(process.cwd());
 if (!gitDir) {
@@ -130,3 +155,7 @@ if (!gitDir) {
 
 await setupGitHooks(gitDir);
 configureCommitTemplate(gitDir);
+
+debug.log("Successfully installed gitmessage and git hooks.");
+debug.log();
+debug.groupEnd();

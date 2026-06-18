@@ -11,8 +11,12 @@ npm exec lint-staged -- --config "<tempDir>/node_modules/@forsakringskassan/comm
 `;
 
 exports[`install (integration) > should install git hooks after manually running commitlint-config command > stdout 1`] = `
-"Writing <tempDir>/.git/hooks/pre-commit
-Writing <tempDir>/.git/hooks/commit-msg
-git config commit.template node_modules/@forsakringskassan/commitlint-config/gitmessage
+"@forsakringskassan/commitlint-config
+  
+  Writing <tempDir>/.git/hooks/pre-commit
+  Writing <tempDir>/.git/hooks/commit-msg
+  git config commit.template node_modules/@forsakringskassan/commitlint-config/gitmessage
+  Successfully installed gitmessage and git hooks.
+  
 "
 `;
