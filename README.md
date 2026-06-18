@@ -76,3 +76,7 @@ If you already have `husky`, `simple-git-hooks` or `lint-staged` in your `packag
 ```bash
 npm rm lint-staged husky simple-git-hooks
 ```
+
+## Debug mode
+
+You can add `--debug` when calling commitlint-config in order to get debug information which could be useful when troubleshooting.

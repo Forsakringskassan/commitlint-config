@@ -60,7 +60,7 @@ describe("install (integration)", () => {
         expect.assertions(4);
 
         run(`npm install "${tarball}" --ignore-scripts`);
-        const { stdout } = run("npm exec commitlint-config");
+        const { stdout } = run("npm exec commitlint-config -- --debug");
         expect(stdout.replaceAll(tempDir, "<tempDir>")).toMatchSnapshot(
             "stdout",
         );
@@ -81,13 +81,37 @@ describe("install (integration)", () => {
         expect(preCommitContent).toMatchSnapshot("pre-commit");
     });
 
+    it("should not print any output by default", () => {
+        expect.assertions(2);
+        run(`npm install "${tarball}" --ignore-scripts`);
+        const { stdout, stderr } = run("npm exec commitlint-config");
+        expect(stdout.trim()).toMatchInlineSnapshot(`""`);
+        expect(stderr.trim()).toMatchInlineSnapshot(`""`);
+    });
+
+    it("should print diagnostics when using --debug", () => {
+        expect.assertions(2);
+        run(`npm install "${tarball}" --ignore-scripts`);
+        const { stdout, stderr } = run("npm exec commitlint-config -- --debug");
+        expect(stdout.replaceAll(tempDir, () => "<tempDir>").trim())
+            .toMatchInlineSnapshot(`
+              "@forsakringskassan/commitlint-config
+                
+                Writing <tempDir>/.git/hooks/pre-commit
+                Writing <tempDir>/.git/hooks/commit-msg
+                git config commit.template node_modules/@forsakringskassan/commitlint-config/gitmessage
+                Successfully installed gitmessage and git hooks."
+            `);
+        expect(stderr.trim()).toMatchInlineSnapshot(`""`);
+    });
+
     it("should not create git hooks when commitlint-config runs in CI", () => {
         expect.assertions(3);
 
         env["CI"] = "true";
 
         run(`npm install "${tarball}"`);
-        const { stderr } = run("npm exec commitlint-config");
+        const { stderr } = run("npm exec commitlint-config -- --debug");
 
         expect(stderr).toBe("");
         expect(fs.existsSync(hookFile(tempDir, "commit-msg"))).toBe(false);
@@ -101,7 +125,7 @@ describe("install (integration)", () => {
         fs.rmSync(path.join(tempDir, ".git"), { recursive: true, force: true });
 
         run(`npm install "${tarball}"`);
-        const result = run("npm exec commitlint-config");
+        const result = run("npm exec commitlint-config -- --debug");
 
         expect(result.stderr).toContain("Failed to locate git directory");
         expect(result.status).not.toBe(0);
