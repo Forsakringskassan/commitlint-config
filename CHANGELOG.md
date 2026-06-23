@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [4.1.0](https://github.com/Forsakringskassan/commitlint-config/compare/v4.0.0...v4.1.0) (2026-06-23)
+
+### Features
+
+* added debug flag ([38ddd73](https://github.com/Forsakringskassan/commitlint-config/commit/38ddd73118e3a333b1d90dfe9675e67327f3c8db))
+
 ## [4.0.0](https://github.com/Forsakringskassan/commitlint-config/compare/v3.6.9...v4.0.0) (2026-06-17)
 
 ### ⚠ BREAKING CHANGES
