@@ -100,6 +100,12 @@
     "node": ">= 22.22.1",
     "npm": ">= 10.0.0"
   },
+  "allowScripts": {
+    "esbuild": true,
+    "fsevents": false,
+    "simple-git-hooks": false,
+    "unrs-resolver": true
+  },
   "externalDependencies": [
     "lint-staged"
   ]
