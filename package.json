@@ -75,7 +75,7 @@
     "@commitlint/format": "21.1.0",
     "@commitlint/lint": "21.1.0",
     "@commitlint/load": "21.1.0",
-    "@forsakringskassan/eslint-config": "15.1.7",
+    "@forsakringskassan/eslint-config": "15.1.9",
     "@forsakringskassan/eslint-config-cli": "15.1.1",
     "@forsakringskassan/eslint-config-typescript": "15.1.2",
     "@forsakringskassan/eslint-config-typescript-typeinfo": "15.1.2",
