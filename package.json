@@ -62,8 +62,8 @@
     "extends": "@forsakringskassan/semantic-release-config"
   },
   "dependencies": {
-    "@commitlint/cli": "21.1.0",
-    "@commitlint/config-conventional": "21.1.0",
+    "@commitlint/cli": "21.2.0",
+    "@commitlint/config-conventional": "21.2.0",
     "conventional-commits-filter": "5.0.0",
     "conventional-commits-parser": "6.4.0",
     "glob": "^13.0.0",
@@ -72,9 +72,9 @@
     "nano-spawn": "2.1.0"
   },
   "devDependencies": {
-    "@commitlint/format": "21.1.0",
-    "@commitlint/lint": "21.1.0",
-    "@commitlint/load": "21.1.0",
+    "@commitlint/format": "21.2.0",
+    "@commitlint/lint": "21.2.0",
+    "@commitlint/load": "21.2.0",
     "@forsakringskassan/eslint-config": "15.1.9",
     "@forsakringskassan/eslint-config-cli": "15.1.1",
     "@forsakringskassan/eslint-config-typescript": "15.1.11",
