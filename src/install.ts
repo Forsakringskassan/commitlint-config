@@ -32,7 +32,7 @@ const debug = args.values.debug
     : new Console(
           new Writable({
               write(_chunk, _encoding, callback) {
-                  setImmediate(callback);
+                  queueMicrotask(callback);
               },
           }),
       );
@@ -96,6 +96,7 @@ async function setupGitHooks(gitDir: string): Promise<void> {
         existingSimpleGitConfig(packageJson) ||
         (await existingHuskyConfig(originCwd, fs))
     ) {
+        /* eslint-disable-next-line unicorn/no-process-exit -- technical debt */
         process.exit(1);
     }
 
@@ -116,6 +117,7 @@ async function setupGitHooks(gitDir: string): Promise<void> {
             this is expected if the consumer has not previously used Husky.
             */
             console.error(error);
+            /* eslint-disable-next-line unicorn/no-process-exit -- technical debt */
             process.exit(1);
         }
     }
@@ -133,6 +135,7 @@ async function setupGitHooks(gitDir: string): Promise<void> {
 }
 
 if (isCI) {
+    /* eslint-disable-next-line unicorn/no-process-exit -- technical debt */
     process.exit(0);
 }
 
@@ -146,11 +149,12 @@ if (!gitDir) {
         console.warn(
             `${packageJson.name} : Failed to locate git directory, skipping gitmessage and git hooks setup.`,
         );
+        /* eslint-disable-next-line unicorn/no-process-exit -- technical debt */
         process.exit(0);
-    } else {
-        console.error(`${packageJson.name} : Failed to locate git directory.`);
-        process.exit(1);
     }
+    console.error(`${packageJson.name} : Failed to locate git directory.`);
+    /* eslint-disable-next-line unicorn/no-process-exit -- technical debt */
+    process.exit(1);
 }
 
 await setupGitHooks(gitDir);
