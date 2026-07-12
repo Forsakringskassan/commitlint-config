@@ -27,7 +27,6 @@ describe("install (integration)", () => {
         stderr: string;
         status: number | null;
     } {
-        /* eslint-disable-next-line sonarjs/os-command -- Static commands  */
         const result = spawnSync(command, {
             cwd: tempDir,
             env,
