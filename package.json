@@ -65,7 +65,7 @@
     "@commitlint/cli": "21.2.0",
     "@commitlint/config-conventional": "21.2.0",
     "conventional-commits-filter": "6.0.1",
-    "conventional-commits-parser": "6.4.0",
+    "conventional-commits-parser": "7.1.0",
     "glob": "^13.0.0",
     "is-ci": "^4.0.0",
     "lint-staged": "17.0.8",
