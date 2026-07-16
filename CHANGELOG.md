@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [4.2.1](https://github.com/Forsakringskassan/commitlint-config/compare/v4.2.0...v4.2.1) (2026-07-16)
+
+### Bug Fixes
+
+* **deps:** update dependency @commitlint/cli to v21.2.1 ([2e3f5ec](https://github.com/Forsakringskassan/commitlint-config/commit/2e3f5ecb22a73e84bc645385182473156d9f3b8d))
+
 ## [4.2.0](https://github.com/Forsakringskassan/commitlint-config/compare/v4.1.3...v4.2.0) (2026-07-16)
 
 ### Features
