@@ -103,7 +103,7 @@
   "allowScripts": {
     "esbuild": true,
     "fsevents": false,
-    "simple-git-hooks": false,
+    "simple-git-hooks": true,
     "unrs-resolver": true
   },
   "externalDependencies": [
