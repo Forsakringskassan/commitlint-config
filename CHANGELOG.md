@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [4.2.0](https://github.com/Forsakringskassan/commitlint-config/compare/v4.1.3...v4.2.0) (2026-07-16)
+
+### Features
+
+* **deps:** update dependency conventional-commits-filter to v6 ([a408d83](https://github.com/Forsakringskassan/commitlint-config/commit/a408d83f52b26611b4dc91a8403d16ed0770358a))
+* **deps:** update dependency conventional-commits-parser to v7 ([f80b259](https://github.com/Forsakringskassan/commitlint-config/commit/f80b259dd1be97ce8a9a87d985f7947d81c00196))
+
 ## [4.1.3](https://github.com/Forsakringskassan/commitlint-config/compare/v4.1.2...v4.1.3) (2026-07-16)
 
 ### Bug Fixes
