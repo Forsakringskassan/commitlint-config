@@ -68,7 +68,7 @@
     "conventional-commits-parser": "7.1.0",
     "glob": "^13.0.0",
     "is-ci": "^4.0.0",
-    "lint-staged": "17.0.8",
+    "lint-staged": "17.1.0",
     "nano-spawn": "2.1.0"
   },
   "devDependencies": {
