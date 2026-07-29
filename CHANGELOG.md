@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## [4.2.5](https://github.com/Forsakringskassan/commitlint-config/compare/v4.2.4...v4.2.5) (2026-07-29)
+
 ## [4.2.4](https://github.com/Forsakringskassan/commitlint-config/compare/v4.2.3...v4.2.4) (2026-07-26)
 
 ## [4.2.3](https://github.com/Forsakringskassan/commitlint-config/compare/v4.2.2...v4.2.3) (2026-07-25)
