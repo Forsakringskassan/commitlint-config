@@ -89,7 +89,7 @@
     "@typescript/native": "npm:typescript@7.0.2",
     "conventional-changelog-conventionalcommits": "10.4.0",
     "esbuild": "0.28.2",
-    "memfs": "4.68.1",
+    "memfs": "4.68.2",
     "npm-pkg-lint": "5.2.4",
     "npm-run-all2": "9.0.3",
     "rimraf": "6.1.3",
