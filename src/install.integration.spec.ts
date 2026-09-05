@@ -20,7 +20,20 @@ function hookFile(dir: string, file: string): string {
 
 describe("install (integration)", () => {
     let tempDir: string;
-    const env: NodeJS.ProcessEnv = process.env;
+    const env: NodeJS.ProcessEnv = {
+        ...process.env,
+
+        /* Only log errors or fatal issues
+         *
+         * - older versions of npm logs warnings such as "unknown env config"
+         * - npm 12 logs notices "npm notice run [..]"
+         *
+         * Both of these pollutes the output and fails tests verifying the
+         * output.
+         */
+        /* eslint-disable-next-line camelcase -- upstream env variable */
+        npm_config_loglevel: "error",
+    };
 
     function run(command: string): {
         stdout: string;
