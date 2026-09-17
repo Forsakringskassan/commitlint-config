@@ -126,35 +126,47 @@ describe("existingHuskyConfig", () => {
 
     it("should return true if husky folder exists", async () => {
         expect.assertions(2);
-        vol.fromJSON({
-            "package.json": JSON.stringify({ name: "mock-package" }),
-            ".husky/precommit": "...",
-            ".husky/_/.gitignore": "",
-        });
+        const cwd = "/project";
+        vol.fromJSON(
+            {
+                "package.json": JSON.stringify({ name: "mock-package" }),
+                ".husky/precommit": "...",
+                ".husky/_/.gitignore": "",
+            },
+            cwd,
+        );
 
-        expect(await existingHuskyConfig("./", fs)).toBe(true);
+        expect(await existingHuskyConfig(cwd, fs)).toBe(true);
         expect(consoleErrorSpy).toHaveBeenCalled();
     });
 
     it("should return false if no husky folder exists", async () => {
         expect.assertions(2);
-        vol.fromJSON({
-            "package.json": JSON.stringify({ name: "mock-package" }),
-        });
+        const cwd = "/project";
+        vol.fromJSON(
+            {
+                "package.json": JSON.stringify({ name: "mock-package" }),
+            },
+            cwd,
+        );
 
-        expect(await existingHuskyConfig("./", fs)).toBe(false);
+        expect(await existingHuskyConfig(cwd, fs)).toBe(false);
         expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 
     it("Husky internal files should be ignored, they are later removed in postinstall script", async () => {
         expect.assertions(2);
-        vol.fromJSON({
-            "package.json": JSON.stringify({ name: "mock-package" }),
-            ".husky/_/.gitignore": "",
-            ".husky/_/pre-commit": "...",
-        });
+        const cwd = "/project";
+        vol.fromJSON(
+            {
+                "package.json": JSON.stringify({ name: "mock-package" }),
+                ".husky/_/.gitignore": "",
+                ".husky/_/pre-commit": "...",
+            },
+            cwd,
+        );
 
-        expect(await existingHuskyConfig("./", fs)).toBe(false);
+        expect(await existingHuskyConfig(cwd, fs)).toBe(false);
         expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 });
