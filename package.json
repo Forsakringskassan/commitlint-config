@@ -85,7 +85,7 @@
     "@tsconfig/node22": "22.0.6",
     "@tsconfig/strictest": "2.0.8",
     "@types/is-ci": "3.0.4",
-    "@types/node": "22.20.2",
+    "@types/node": "22.20.3",
     "@typescript/native": "npm:typescript@7.0.2",
     "conventional-changelog-conventionalcommits": "10.4.0",
     "esbuild": "0.28.2",
