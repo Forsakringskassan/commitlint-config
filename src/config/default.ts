@@ -15,8 +15,10 @@ const config = {
         /* the changelog is included with the commits by semantic-release and
          * contains quite long lines and we don't really consider the body format to
          * be important so we disable max length (header still applies) */
+        /* eslint-disable-next-line @typescript-eslint/no-unsafe-enum-assignment -- technical debt */
         "body-max-line-length": [0],
 
+        /* eslint-disable-next-line @typescript-eslint/no-unsafe-enum-assignment -- technical debt */
         "jira-reference": [2, "always"],
     },
 
