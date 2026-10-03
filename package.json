@@ -77,7 +77,7 @@
     "@commitlint/load": "21.2.3",
     "@forsakringskassan/eslint-config": "15.11.9",
     "@forsakringskassan/eslint-config-cli": "15.11.0",
-    "@forsakringskassan/eslint-config-typescript": "15.11.7",
+    "@forsakringskassan/eslint-config-typescript": "15.11.10",
     "@forsakringskassan/eslint-config-typescript-typeinfo": "15.11.7",
     "@forsakringskassan/eslint-config-vitest": "15.11.6",
     "@forsakringskassan/prettier-config": "3.7.11",
