@@ -1,4 +1,4 @@
-import type * as fs from "node:fs";
+import type fsmodule from "node:fs";
 import { createFsFromVolume, vol } from "memfs";
 import {
     type MockInstance,
@@ -9,8 +9,6 @@ import {
     it,
     vi,
 } from "vitest";
-
-type NodeFs = typeof fs;
 
 import {
     type PackageJsonType,
@@ -117,6 +115,8 @@ describe("existingSimpleGitConfig", () => {
 });
 
 describe("existingHuskyConfig", () => {
+    type NodeFs = typeof fsmodule;
+
     let fs: NodeFs;
 
     beforeEach(() => {
