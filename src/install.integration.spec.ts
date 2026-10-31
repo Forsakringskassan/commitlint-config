@@ -12,6 +12,14 @@ const rootDir = path.join(import.meta.dirname, "..");
 const tarballName = `forsakringskassan-commitlint-config-${packageJson.version}.tgz`;
 const tarball = path.join(rootDir, tarballName);
 
+const npmrc = [
+    /* npm bails out on the "prepare" script in the tarball even when explicitly setting "allowScripts" in "package.json" */
+    "strict-allow-scripts=false",
+
+    /* need to install packages just built */
+    "min-release-age=0",
+].join("\n");
+
 vi.setConfig({ testTimeout: 30_000 });
 
 function hookFile(dir: string, file: string): string {
@@ -63,6 +71,9 @@ describe("install (integration)", () => {
 
         run("git init");
         run("npm init -y");
+
+        /* write a .npmrc file in the temp directory */
+        await fs.writeFile(path.join(tempDir, ".npmrc"), npmrc, "utf8");
     });
 
     afterEach(async () => {
