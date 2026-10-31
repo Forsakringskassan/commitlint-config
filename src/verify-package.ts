@@ -1,5 +1,4 @@
-import type * as fs from "node:fs";
-import { glob } from "glob";
+import type * as fsModule from "node:fs/promises";
 
 export interface PackageJsonType {
     dependencies?: Record<string, string>;
@@ -55,31 +54,28 @@ export function existingSimpleGitConfig(packageJson: PackageJsonType): boolean {
 
 export async function existingHuskyConfig(
     cwd: string,
-    fileSystem: typeof fs,
+    fs: Pick<typeof fsModule, "glob">,
 ): Promise<boolean> {
-    try {
-        const huskyFiles = await glob(".husky/**/*", {
-            fs: fileSystem,
-            ignore: ".husky/_/**",
-            cwd,
-        });
-
-        if (huskyFiles.length > 0) {
-            console.error(
-                `
-                    @forsakringskassan/commitlint-config
-                    You need to remove husky folder before installing this package.
-
-                    git rm -rf .husky
-                `,
-            );
-            return true;
+    const iterator = fs.glob(".husky/**/*", {
+        exclude: [".husky/_/**"],
+        cwd,
+        withFileTypes: true,
+    });
+    for await (const ent of iterator) {
+        /* ignore folders */
+        if (!ent.isFile()) {
+            continue;
         }
 
-        return false;
-    } catch {
-        /* no husky config */
-    }
+        console.error(
+            `
+                @forsakringskassan/commitlint-config
+                You need to remove husky folder before installing this package.
 
+                git rm -rf .husky
+            `,
+        );
+        return true;
+    }
     return false;
 }
