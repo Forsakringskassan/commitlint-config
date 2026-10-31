@@ -94,7 +94,7 @@ async function setupGitHooks(gitDir: string): Promise<void> {
     if (
         invalidInstalledPackages(packageJson) ||
         existingSimpleGitConfig(packageJson) ||
-        (await existingHuskyConfig(originCwd, fs))
+        (await existingHuskyConfig(originCwd, fs.promises))
     ) {
         /* eslint-disable-next-line unicorn/no-process-exit -- technical debt */
         process.exit(1);
