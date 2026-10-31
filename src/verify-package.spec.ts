@@ -1,5 +1,5 @@
-import type fsmodule from "node:fs";
-import { createFsFromVolume, vol } from "memfs";
+import type fsmodule from "node:fs/promises";
+import { Volume } from "memfs";
 import {
     type MockInstance,
     afterEach,
@@ -117,17 +117,10 @@ describe("existingSimpleGitConfig", () => {
 describe("existingHuskyConfig", () => {
     type NodeFs = typeof fsmodule;
 
-    let fs: NodeFs;
-
-    beforeEach(() => {
-        vol.reset();
-        fs = createFsFromVolume(vol) as unknown as NodeFs;
-    });
-
     it("should return true if husky folder exists", async () => {
         expect.assertions(2);
         const cwd = "/project";
-        vol.fromJSON(
+        const vol = Volume.fromJSON(
             {
                 "package.json": JSON.stringify({ name: "mock-package" }),
                 ".husky/precommit": "...",
@@ -135,7 +128,7 @@ describe("existingHuskyConfig", () => {
             },
             cwd,
         );
-
+        const fs = vol.promises as unknown as NodeFs;
         expect(await existingHuskyConfig(cwd, fs)).toBe(true);
         expect(consoleErrorSpy).toHaveBeenCalled();
     });
@@ -143,13 +136,13 @@ describe("existingHuskyConfig", () => {
     it("should return false if no husky folder exists", async () => {
         expect.assertions(2);
         const cwd = "/project";
-        vol.fromJSON(
+        const vol = Volume.fromJSON(
             {
                 "package.json": JSON.stringify({ name: "mock-package" }),
             },
             cwd,
         );
-
+        const fs = vol.promises as unknown as NodeFs;
         expect(await existingHuskyConfig(cwd, fs)).toBe(false);
         expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
@@ -157,7 +150,7 @@ describe("existingHuskyConfig", () => {
     it("Husky internal files should be ignored, they are later removed in postinstall script", async () => {
         expect.assertions(2);
         const cwd = "/project";
-        vol.fromJSON(
+        const vol = Volume.fromJSON(
             {
                 "package.json": JSON.stringify({ name: "mock-package" }),
                 ".husky/_/.gitignore": "",
@@ -165,7 +158,7 @@ describe("existingHuskyConfig", () => {
             },
             cwd,
         );
-
+        const fs = vol.promises as unknown as NodeFs;
         expect(await existingHuskyConfig(cwd, fs)).toBe(false);
         expect(consoleErrorSpy).not.toHaveBeenCalled();
     });

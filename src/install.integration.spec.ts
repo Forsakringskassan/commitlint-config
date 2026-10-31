@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { randomBytes } from "node:crypto";
-import fs, { realpathSync } from "node:fs";
-import { mkdir, rm } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -11,6 +11,14 @@ import packageJson from "../package.json" with { type: "json" };
 const rootDir = path.join(import.meta.dirname, "..");
 const tarballName = `forsakringskassan-commitlint-config-${packageJson.version}.tgz`;
 const tarball = path.join(rootDir, tarballName);
+
+const npmrc = [
+    /* npm bails out on the "prepare" script in the tarball even when explicitly setting "allowScripts" in "package.json" */
+    "strict-allow-scripts=false",
+
+    /* need to install packages just built */
+    "min-release-age=0",
+].join("\n");
 
 vi.setConfig({ testTimeout: 30_000 });
 
@@ -55,20 +63,24 @@ describe("install (integration)", () => {
 
     beforeEach(async () => {
         const tempDirName = randomBytes(16).toString("hex");
-        tempDir = path.join(realpathSync(os.tmpdir()), tempDirName);
-        await mkdir(tempDir);
+        const tmpRoot = await fs.realpath(os.tmpdir());
+        tempDir = path.join(tmpRoot, tempDirName);
+        await fs.mkdir(tempDir);
 
         env["CI"] = "false";
 
         run("git init");
         run("npm init -y");
+
+        /* write a .npmrc file in the temp directory */
+        await fs.writeFile(path.join(tempDir, ".npmrc"), npmrc, "utf8");
     });
 
     afterEach(async () => {
-        await rm(tempDir, { recursive: true, force: true });
+        await fs.rm(tempDir, { recursive: true, force: true });
     });
 
-    it("should install git hooks after manually running commitlint-config command", () => {
+    it("should install git hooks after manually running commitlint-config command", async () => {
         expect.assertions(4);
 
         run(`npm install "${tarball}" --ignore-scripts`);
@@ -78,19 +90,23 @@ describe("install (integration)", () => {
         );
 
         const hooksDir = path.join(tempDir, ".git", "hooks");
-        const hooks = fs
-            .readdirSync(hooksDir)
-            .filter((f) => !f.endsWith(".sample"));
+        const files = await fs.readdir(hooksDir);
+        const hooks = files.filter((f) => !f.endsWith(".sample"));
         expect(hooks).not.toHaveLength(0);
 
-        expect(
-            fs.readFileSync(hookFile(tempDir, "commit-msg"), "utf8"),
-        ).toMatchSnapshot("commit-msg");
+        const commitMsgContent = await fs.readFile(
+            hookFile(tempDir, "commit-msg"),
+            "utf8",
+        );
+        expect(commitMsgContent).toMatchSnapshot("commit-msg");
 
-        const preCommitContent = fs
-            .readFileSync(hookFile(tempDir, "pre-commit"), "utf8")
-            .replaceAll(tempDir, "<tempDir>");
-        expect(preCommitContent).toMatchSnapshot("pre-commit");
+        const preCommitContent = await fs.readFile(
+            hookFile(tempDir, "pre-commit"),
+            "utf8",
+        );
+        expect(
+            preCommitContent.replaceAll(tempDir, "<tempDir>"),
+        ).toMatchSnapshot("pre-commit");
     });
 
     it("should not print any output by default", () => {
@@ -126,15 +142,18 @@ describe("install (integration)", () => {
         const { stderr } = run("npm exec commitlint-config -- --debug");
 
         expect(stderr).toBe("");
-        expect(fs.existsSync(hookFile(tempDir, "commit-msg"))).toBe(false);
-        expect(fs.existsSync(hookFile(tempDir, "pre-commit"))).toBe(false);
+        expect(existsSync(hookFile(tempDir, "commit-msg"))).toBe(false);
+        expect(existsSync(hookFile(tempDir, "pre-commit"))).toBe(false);
     });
 
-    it("should exit with error when not in a git repository and run via commitlint-config", () => {
+    it("should exit with error when not in a git repository and run via commitlint-config", async () => {
         expect.assertions(2);
 
         // Simulate a non-git repository
-        fs.rmSync(path.join(tempDir, ".git"), { recursive: true, force: true });
+        await fs.rm(path.join(tempDir, ".git"), {
+            recursive: true,
+            force: true,
+        });
 
         run(`npm install "${tarball}"`);
         const result = run("npm exec commitlint-config -- --debug");
