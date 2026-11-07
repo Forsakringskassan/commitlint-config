@@ -95,7 +95,7 @@
     "conventional-changelog-conventionalcommits": "10.4.1",
     "esbuild": "0.28.2",
     "memfs": "4.80.0",
-    "npm-pkg-lint": "5.4.0",
+    "npm-pkg-lint": "5.4.1",
     "npm-run-all2": "9.0.4",
     "rimraf": "6.1.4",
     "simple-git-hooks": "2.14.0",
