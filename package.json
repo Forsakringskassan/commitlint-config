@@ -87,7 +87,7 @@
     "@forsakringskassan/eslint-config-vitest": "15.13.7",
     "@forsakringskassan/prettier-config": "3.7.14",
     "@html-validate/release-scripts": "7.6.17",
-    "@tsconfig/node22": "22.0.6",
+    "@tsconfig/node22": "22.0.7",
     "@tsconfig/strictest": "2.0.8",
     "@types/is-ci": "3.0.4",
     "@types/node": "22.20.5",
