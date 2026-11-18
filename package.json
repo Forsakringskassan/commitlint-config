@@ -74,7 +74,7 @@
     "conventional-commits-parser": "7.1.4",
     "is-ci": "^4.0.0",
     "lint-staged": "17.6.0",
-    "nano-spawn": "2.1.0"
+    "nano-spawn": "3.0.0"
   },
   "devDependencies": {
     "@commitlint/format": "21.2.3",
